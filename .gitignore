@@ -1,0 +1,25 @@
+.DS_Store
+xcuserdata/
+*.xcresult
+DerivedData/
+
+# Build outputs
+build/
+*.ipa
+*.dSYM.zip
+node_modules/
+.firebase/
+
+# Secrets and local config
+.env
+.env.*
+functions/.runtimeconfig.json
+*.p8
+*.p12
+*.mobileprovision
+
+# Local tooling
+.mcp.json
+
+# Large marketing assets
+AppStoreScreenshots/

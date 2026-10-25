@@ -1,0 +1,213 @@
+[
+  {
+    "id": "nadi-shodhana",
+    "name": "Alternate Nostril Breathing",
+    "aliases": [
+      "alternate nostril breathing",
+      "anuloma viloma",
+      "psychic network purification",
+      "Nadi Shodhana"
+    ],
+    "goodFor": [
+      "anxiety",
+      "overwhelm",
+      "stress",
+      "balance",
+      "calm",
+      "focus",
+      "before study",
+      "exam"
+    ],
+    "summary": "Alternate-nostril breathing that balances and steadies the mind.",
+    "teen": "Breathe in and out through one nostril at a time. It's like a reset button for a racing brain — great when your head's spinning before a test.",
+    "category": "Breathing techniques",
+    "animation": "nostril",
+    "audio": null,
+    "audioTrackIds": null,
+    "content": "A breathing practice in which the breath flows through one nostril at a time, using the right hand to gently close alternate nostrils. It balances the flow of energy in the the body's energy channels and calms a restless or anxious mind. Begin with equal, unhurried breaths and no retention.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  },
+  {
+    "id": "bhramari",
+    "name": "Humming Bee Breath",
+    "aliases": [
+      "humming bee breath",
+      "bee breath",
+      "bhramari pranayama",
+      "Bhramari"
+    ],
+    "goodFor": [
+      "tension",
+      "anger",
+      "frustration",
+      "racing thoughts",
+      "sleep",
+      "focus",
+      "calm"
+    ],
+    "summary": "A soft humming sound on a slow exhale that soothes the mind.",
+    "teen": "Breathe out with a soft humming sound, like a bee. The buzz calms you down fast — good when you're wound up, angry, or can't switch off at night.",
+    "category": "Breathing techniques",
+    "animation": "hum",
+    "audio": null,
+    "audioTrackIds": null,
+    "content": "A breathing practice in which a soft, steady humming sound like a bee is made throughout a slow exhalation. The gentle vibration relieves mental tension, anger and anxiety, and is calming before sleep.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  },
+  {
+    "id": "ujjayi",
+    "name": "Ocean Breath",
+    "aliases": [
+      "ocean breath",
+      "victorious breath",
+      "psychic breath",
+      "ujjayi pranayama",
+      "Ujjayi"
+    ],
+    "goodFor": [
+      "focus",
+      "attention",
+      "calm",
+      "steadiness",
+      "before sleep"
+    ],
+    "summary": "A gentle whisper-like breath that steadies attention.",
+    "teen": "A gentle 'ocean' breath made softly in the back of your throat. It keeps your mind from wandering — handy when you're trying to focus.",
+    "category": "Breathing techniques",
+    "animation": "throat",
+    "audio": null,
+    "audioTrackIds": null,
+    "content": "A breathing practice performed by lightly contracting the glottis so the breath makes a soft, continuous ocean-like sound. It steadies the mind, deepens awareness of the breath, and is often used as a preparation for relaxation and meditation.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  },
+  {
+    "id": "ajapa-japa",
+    "name": "Breath Awareness Meditation",
+    "aliases": [
+      "so ham",
+      "soham",
+      "ajapa",
+      "breath awareness with mantra",
+      "Ajapa Japa (So-Ham)"
+    ],
+    "goodFor": [
+      "meditation",
+      "calm",
+      "focus",
+      "anxiety",
+      "restlessness"
+    ],
+    "summary": "Watching the natural breath with the silent breath rhythm as a meditative anchor.",
+    "teen": "Just watch your natural breath and silently think 'So' as you breathe in, 'Ham' as you breathe out. A simple way to drop into a calmer headspace.",
+    "category": "Short meditation practices",
+    "animation": "soham",
+    "audio": null,
+    "audioTrackIds": null,
+    "content": "A meditative practice of becoming aware of the spontaneous breath while mentally repeating 'So' on inhalation and 'Ham' on exhalation, allowing the mantra and breath to synchronize effortlessly.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  },
+  {
+    "id": "antar-mouna",
+    "name": "Inner Silence",
+    "aliases": [
+      "inner silence",
+      "witnessing thoughts",
+      "Antar Mouna"
+    ],
+    "goodFor": [
+      "busy mind",
+      "overthinking",
+      "restlessness",
+      "meditation"
+    ],
+    "summary": "Inner-silence meditation: witnessing thoughts without reacting.",
+    "teen": "Sit and watch your thoughts drift by without grabbing onto them. Sounds odd, but it quiets a noisy mind.",
+    "category": "Short meditation practices",
+    "animation": "thoughts",
+    "audio": null,
+    "audioTrackIds": null,
+    "content": "A meditation practice of watching thoughts arise and pass as a detached witness, gradually cultivating stillness of the mind through defined stages.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  },
+  {
+    "id": "shavasana",
+    "name": "Deep Relaxation",
+    "aliases": [
+      "corpse pose",
+      "relaxation pose",
+      "Shavasana"
+    ],
+    "goodFor": [
+      "tension",
+      "relaxation",
+      "rest",
+      "before sleep"
+    ],
+    "summary": "Complete stillness lying on the back to release physical tension.",
+    "teen": "Lie flat, totally still, and let every muscle switch off. The classic 'do nothing' pose that resets your whole body.",
+    "category": "Relaxation techniques",
+    "animation": "scan",
+    "audio": null,
+    "audioTrackIds": [
+      "shavasana-1",
+      "shavasana-2",
+      "shavasana-3",
+      "shavasana-powernap"
+    ],
+    "content": "Lying flat on the back with the body completely still and relaxed, arms slightly away from the body, releasing tension from each part in turn. The base position for relaxation and yogic sleep.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  },
+  {
+    "id": "yoga-nidra",
+    "name": "Yogic Sleep",
+    "aliases": [
+      "yogic sleep",
+      "yoga nap",
+      "psychic sleep",
+      "deep relaxation",
+      "Yoga Nidra"
+    ],
+    "goodFor": [
+      "sleep",
+      "tired",
+      "exhausted",
+      "deep rest",
+      "after study",
+      "stress",
+      "relaxation"
+    ],
+    "summary": "Guided systematic relaxation lying in deep relaxation; deeply restful.",
+    "teen": "Lie down and get guided into deep rest while staying awake — 'yogic sleep.' Amazing after a long study session or when you can't fall asleep.",
+    "category": "Relaxation techniques",
+    "animation": "scan",
+    "audio": null,
+    "audioTrackIds": null,
+    "content": "A systematic guided relaxation practised lying in deep relaxation, moving through a personal resolve (personal resolve), rotation of awareness through the body, breath awareness, and visualization, bringing deep physical, mental and emotional rest while remaining aware.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  },
+  {
+    "id": "abdominal-breathing",
+    "name": "Abdominal Breathing",
+    "aliases": [
+      "diaphragmatic breathing",
+      "belly breathing",
+      "natural breathing",
+      "Abdominal Breathing"
+    ],
+    "goodFor": [
+      "calm",
+      "anxiety",
+      "foundation",
+      "beginner",
+      "stress"
+    ],
+    "summary": "Slow, natural belly breathing — the calm foundation of all the practices.",
+    "teen": "Slow breathing into your belly instead of your chest. The simplest calm-down there is — start here if you're new.",
+    "category": "Breathing techniques",
+    "animation": "belly",
+    "audio": null,
+    "audioTrackIds": null,
+    "content": "Breathing so that the abdomen gently rises on inhalation and falls on exhalation, using the diaphragm rather than the chest. The foundational calming breath and a starting point for breathing practice.",
+    "source": "Traditional yoga breathing and relaxation practice"
+  }
+]

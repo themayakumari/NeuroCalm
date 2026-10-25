@@ -1,0 +1,905 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0230EAED07E1E6D62CA19501 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877A02A725FF21B35BDA3ED /* AppTheme.swift */; };
+		06D5C0F963A95437D3B5754C /* BadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC230A35EE4CCCD07B202C /* BadgesView.swift */; };
+		0F8E0FCFB4B9E3B71D0854EF /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5E4F4E94DCDA974A7D344 /* FeatureFlags.swift */; };
+		1267FF8FD4A96B89CA65879C /* WellnessScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C55B60B057B5BF7A3F4CAA /* WellnessScore.swift */; };
+		16F7903803BD9CB7EB051659 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218DAF8903F4961B7DFD92F9 /* LoginView.swift */; };
+		21B2105AD1677851EBB58DCA /* EncouragementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7452B926EBC9747E95B91CA /* EncouragementService.swift */; };
+		22DB51CA6ECB4079C58EDF9D /* BreathingVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D70D291886C262EA2EE4B1 /* BreathingVoiceService.swift */; };
+		29ECB0963F215C35D838F372 /* MoodCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CC56740CB223552F29C52 /* MoodCheckIn.swift */; };
+		2BCF60DE1493F7152A4C4F4E /* MainSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0585928007EDFBF8903D8F10 /* MainSplitView.swift */; };
+		30BC050E4190A24568E6E146 /* RoutineTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F084B69C63CD212C3D350BA1 /* RoutineTask.swift */; };
+		32259864AC5CAADE303A60B3 /* TeamChallengeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FC966DE2918ADB088A20A /* TeamChallengeViews.swift */; };
+		36109259F0DF64BECE810299 /* TeamChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DFE9569607D236471D42E9 /* TeamChallenge.swift */; };
+		39DA4A847ECA6A04A4F09330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD7EBF3B12690346E6FC9217 /* Assets.xcassets */; };
+		3F31C322A690C00D7B012FD7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF88371D9F882ADA78F4C9 /* AuthService.swift */; };
+		44C5C157058CCE8E29DA4939 /* CoreLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F999813D9D25CA3DC9EE017 /* CoreLogicTests.swift */; };
+		4770FC5E65DD7CF9FAD4D2D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BC678FA2E0DA2F01B2525B /* GoogleService-Info.plist */; };
+		485A258BD9F400972687EF41 /* AssistantConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47633B75C631EBFEF9D7B0 /* AssistantConversation.swift */; };
+		48EC132A312126E6A1DD66F5 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2690EAABE71F353312108 /* TeamService.swift */; };
+		4C67B2E0894410179E1008C8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 348A633472C692F78A4D3D89 /* FirebaseAuth */; };
+		4EAC2C6A079AF0A74289891D /* shavasana-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D16B4CDFAF44B6D11AFD4 /* shavasana-3.mp3 */; };
+		4F5AF233B363E634FA30E030 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ED25597830C1E912E0542 /* StatsView.swift */; };
+		5B1D593B5BFCF621D7E360D6 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB002AC86A99C9E8BE95B9 /* School.swift */; };
+		5C4EF91D9F28393D07AF6041 /* NeuroCalmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE059CFF28AF7292821164 /* NeuroCalmApp.swift */; };
+		5D33092A3CFE981ED0E5AAC5 /* shavasana-powernap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D7EDC914B43DF643B1983530 /* shavasana-powernap.mp3 */; };
+		5F453D75980011EC77A786E2 /* yoga-nap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3DEDE17ADEF462AE0650BD2D /* yoga-nap.mp3 */; };
+		6243C2D7E13B20D0830829EC /* ChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0270DA458665C2ADAC5EC7 /* ChallengesView.swift */; };
+		63802E522F9AD48A14A3B190 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CB2DE80DCDE6CBCD20E6E1 /* SettingsView.swift */; };
+		666E9FF3B5EEAB4A67C5DD3C /* YogaTradition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A967AB5F8C91D3AD016B75EE /* YogaTradition.swift */; };
+		6CB9CEA0DB2348A9244D7543 /* AssistantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB70435463212B012B00AB /* AssistantService.swift */; };
+		6D5273A63759827BD7513172 /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3656C41998B036D47319697 /* PlannerView.swift */; };
+		7789278BAE9DE6BBF0FB6926 /* AppleIntelligenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8565F32173AD18758E5462D2 /* AppleIntelligenceService.swift */; };
+		7C6A2E41A24C7C82DBDC57ED /* KnowledgeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69AE5241BDA91C558606E15 /* KnowledgeBase.swift */; };
+		7CFAF46E527A2C26BE9A55EC /* AssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E040E3EF564F72C954980 /* AssistantView.swift */; };
+		7F5D2DCBDF0762F3C83993CA /* PracticeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA919652253CE8733E4EF8B4 /* PracticeDetailView.swift */; };
+		80688649D233E8D4F4797189 /* MeditationTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAA8775731CA16286BC797 /* MeditationTrack.swift */; };
+		81384BB2C1971A109576C0A9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3075442DFD8DC8ED8A83E403 /* MainTabView.swift */; };
+		89F4DEEBB8DC60311F7049D4 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC752132F13A79966D33AE54 /* UserProfile.swift */; };
+		8AC44642D39FED8CCB3A3E74 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 529C66AA24A5D2B9D5553D4B /* FirebaseFirestore */; };
+		8E845D2A796ECF7491A1E86F /* shavasana-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 17CEC1A96164BC29002FEB47 /* shavasana-1.mp3 */; };
+		8ECF91DBD22CB180BECA8713 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A32ABFECF81CC89540829E /* ShareCardView.swift */; };
+		908464899E2F18040393FACD /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFF518CCE2FE66ACC02338 /* Bookmark.swift */; };
+		923490E125E3D5F89764C486 /* practices.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E770290D00B5FEA28111466 /* practices.json */; };
+		9DE9B04EC790308498D3EE60 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9313FD5B11D0BF59784ADEB /* Badge.swift */; };
+		A0CA214D2B7F72A64F86CD54 /* PracticeLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7912B131D4A37376E2520FE2 /* PracticeLibraryView.swift */; };
+		A1FB90417971059B0D5F9520 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D337E0BD88B80D85E24206 /* CalendarService.swift */; };
+		A20A42C0C767E384ADAB3A18 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCAD77EDF4306C8294DDD5C /* OnboardingView.swift */; };
+		AF11893A746C33C3B2E4D4E1 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC14F739CEFA9BE9BADA9EF /* SupportView.swift */; };
+		B11B3E1CAEEE67C925DAF6BB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5BDEBD28DDE4D5C08B2EE /* RootView.swift */; };
+		B4532319C5831535D6DBFFC8 /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8C117F7E76AAF28F9AAA0A /* HealthKitService.swift */; };
+		B7E832598DE53BA5C607071C /* RelaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D89A4AB6DB09C3A47D04F5 /* RelaxView.swift */; };
+		B9CD19EC27621514E475FD4C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18ACD078D4D7817EE2DCDE1 /* Challenge.swift */; };
+		BE82E3BF35E3DD5017280564 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609422EBEAE0E4A3B18F521E /* HomeView.swift */; };
+		BFAC4D935564CDE34A6D6182 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 0686D161C9D635ED688EFBD6 /* GoogleSignIn */; };
+		C0AEDBEA4AFBFD00A7704505 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 774539E188F7E3BD9B3D69B9 /* FirebaseFunctions */; };
+		C1FF07D181DEEBD47DE7C3BE /* Deadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3B72A088510F29DD212D9 /* Deadline.swift */; };
+		C7FC79EF471CC623C377486C /* CalmRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36608DE73D0DB594775307D /* CalmRingView.swift */; };
+		CFF2B107A661FD1CA5A55732 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6915B7C95058680933860C3 /* WelcomeView.swift */; };
+		D11105B8DB6A2ECA723E6CDC /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A8E20871D04DCD4B65957 /* SampleData.swift */; };
+		D2139F24290A84D5EAE817E6 /* shavasana-2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB747E4E4F04BD08A06FA959 /* shavasana-2.mp3 */; };
+		E372B742D8C6B92A43BD33CE /* StreakLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F98A78DD058522E5CFEDBA /* StreakLogic.swift */; };
+		E4C4FCE40A0A18E6C228F001 /* AdaptiveMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B78187EFE9A5D3F63D5180 /* AdaptiveMainView.swift */; };
+		E4EE13A0322E795BCC286AB9 /* SocialShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C736DB81395D96A5356ACFA /* SocialShare.swift */; };
+		E6E32AA442F19DC5CCA4C6F7 /* PracticeAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82973FF641CA8656D31BDB73 /* PracticeAnimationView.swift */; };
+		EB60603CCEB4739048D183D4 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46147175360926E52C59C971 /* AudioPlayerService.swift */; };
+		EF460BE5E8FBAA5B176913BE /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7660D188E079264A970B16DB /* NotificationService.swift */; };
+		F3914DA3A27EC544EC5EC490 /* CalmLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AAFAB46D4308252DE0349D /* CalmLog.swift */; };
+		F423FF4AE25A4C31210EEBEF /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD03D71DFB269B9C44A451 /* BreathingView.swift */; };
+		F9BC10AE050ED709E0C21319 /* ScreenTourUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF99EF79975911EFA0AA42 /* ScreenTourUITests.swift */; };
+		FF747E9ED26302730E3EF220 /* BreathingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A6CAF9A6FCB1DFA2E9EF7 /* BreathingSession.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8CDF671F7586858DC2A7FA21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CFC5F68F2083825A914190B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B096DC6208A026A66D45B94;
+			remoteInfo = NeuroCalm;
+		};
+		DBE8989DDBEF360768E23C10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CFC5F68F2083825A914190B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B096DC6208A026A66D45B94;
+			remoteInfo = NeuroCalm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00E3483030056DF42DF57BA9 /* NeuroCalm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NeuroCalm.entitlements; sourceTree = "<group>"; };
+		0585928007EDFBF8903D8F10 /* MainSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitView.swift; sourceTree = "<group>"; };
+		09F51FE1A7A2EDBB84912D33 /* NeuroCalmUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = NeuroCalmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12C7C206797E35EDA0A9680F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		17CEC1A96164BC29002FEB47 /* shavasana-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "shavasana-1.mp3"; sourceTree = "<group>"; };
+		18A32ABFECF81CC89540829E /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
+		1BC14F739CEFA9BE9BADA9EF /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
+		218DAF8903F4961B7DFD92F9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2877A02A725FF21B35BDA3ED /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		28B78187EFE9A5D3F63D5180 /* AdaptiveMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveMainView.swift; sourceTree = "<group>"; };
+		3075442DFD8DC8ED8A83E403 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		31AAFAB46D4308252DE0349D /* CalmLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmLog.swift; sourceTree = "<group>"; };
+		371EE62A54278BE25B14A88F /* NeuroCalmTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = NeuroCalmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BBFF518CCE2FE66ACC02338 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		3DEDE17ADEF462AE0650BD2D /* yoga-nap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "yoga-nap.mp3"; sourceTree = "<group>"; };
+		3E770290D00B5FEA28111466 /* practices.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = practices.json; sourceTree = "<group>"; };
+		41B3B72A088510F29DD212D9 /* Deadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deadline.swift; sourceTree = "<group>"; };
+		46147175360926E52C59C971 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
+		497CC56740CB223552F29C52 /* MoodCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckIn.swift; sourceTree = "<group>"; };
+		57AC230A35EE4CCCD07B202C /* BadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesView.swift; sourceTree = "<group>"; };
+		5A1FC966DE2918ADB088A20A /* TeamChallengeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallengeViews.swift; sourceTree = "<group>"; };
+		5A8D16B4CDFAF44B6D11AFD4 /* shavasana-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "shavasana-3.mp3"; sourceTree = "<group>"; };
+		5C736DB81395D96A5356ACFA /* SocialShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialShare.swift; sourceTree = "<group>"; };
+		5CFAA8775731CA16286BC797 /* MeditationTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationTrack.swift; sourceTree = "<group>"; };
+		5F999813D9D25CA3DC9EE017 /* CoreLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLogicTests.swift; sourceTree = "<group>"; };
+		609422EBEAE0E4A3B18F521E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		60D89A4AB6DB09C3A47D04F5 /* RelaxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxView.swift; sourceTree = "<group>"; };
+		61D70D291886C262EA2EE4B1 /* BreathingVoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingVoiceService.swift; sourceTree = "<group>"; };
+		7660D188E079264A970B16DB /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		77AB70435463212B012B00AB /* AssistantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantService.swift; sourceTree = "<group>"; };
+		7912B131D4A37376E2520FE2 /* PracticeLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeLibraryView.swift; sourceTree = "<group>"; };
+		7DDF99EF79975911EFA0AA42 /* ScreenTourUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTourUITests.swift; sourceTree = "<group>"; };
+		82973FF641CA8656D31BDB73 /* PracticeAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAnimationView.swift; sourceTree = "<group>"; };
+		8322709AF14237C20D8699A0 /* NeuroCalm.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NeuroCalm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8565F32173AD18758E5462D2 /* AppleIntelligenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceService.swift; sourceTree = "<group>"; };
+		8A8C117F7E76AAF28F9AAA0A /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
+		8BDE059CFF28AF7292821164 /* NeuroCalmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuroCalmApp.swift; sourceTree = "<group>"; };
+		A09A8E20871D04DCD4B65957 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		A3656C41998B036D47319697 /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
+		A6DF88371D9F882ADA78F4C9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		A967AB5F8C91D3AD016B75EE /* YogaTradition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaTradition.swift; sourceTree = "<group>"; };
+		AC47633B75C631EBFEF9D7B0 /* AssistantConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantConversation.swift; sourceTree = "<group>"; };
+		AD7EBF3B12690346E6FC9217 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B6C55B60B057B5BF7A3F4CAA /* WellnessScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellnessScore.swift; sourceTree = "<group>"; };
+		B6D337E0BD88B80D85E24206 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		B9313FD5B11D0BF59784ADEB /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		BA919652253CE8733E4EF8B4 /* PracticeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailView.swift; sourceTree = "<group>"; };
+		BBC5E4F4E94DCDA974A7D344 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
+		BDCAD77EDF4306C8294DDD5C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		C18ACD078D4D7817EE2DCDE1 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		C36608DE73D0DB594775307D /* CalmRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmRingView.swift; sourceTree = "<group>"; };
+		C6915B7C95058680933860C3 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		C6AD03D71DFB269B9C44A451 /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
+		C7F98A78DD058522E5CFEDBA /* StreakLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakLogic.swift; sourceTree = "<group>"; };
+		CB747E4E4F04BD08A06FA959 /* shavasana-2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "shavasana-2.mp3"; sourceTree = "<group>"; };
+		CE0270DA458665C2ADAC5EC7 /* ChallengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesView.swift; sourceTree = "<group>"; };
+		CE6ED25597830C1E912E0542 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		D5D2690EAABE71F353312108 /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
+		D7EDC914B43DF643B1983530 /* shavasana-powernap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "shavasana-powernap.mp3"; sourceTree = "<group>"; };
+		DCDB002AC86A99C9E8BE95B9 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
+		E2CB2DE80DCDE6CBCD20E6E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E7452B926EBC9747E95B91CA /* EncouragementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncouragementService.swift; sourceTree = "<group>"; };
+		E8BC678FA2E0DA2F01B2525B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EBD5BDEBD28DDE4D5C08B2EE /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		F084B69C63CD212C3D350BA1 /* RoutineTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTask.swift; sourceTree = "<group>"; };
+		F1DFE9569607D236471D42E9 /* TeamChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallenge.swift; sourceTree = "<group>"; };
+		F69AE5241BDA91C558606E15 /* KnowledgeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeBase.swift; sourceTree = "<group>"; };
+		F93A6CAF9A6FCB1DFA2E9EF7 /* BreathingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingSession.swift; sourceTree = "<group>"; };
+		FC752132F13A79966D33AE54 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		FD1E040E3EF564F72C954980 /* AssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		47CB81E686681AF37E1E51F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C67B2E0894410179E1008C8 /* FirebaseAuth in Frameworks */,
+				8AC44642D39FED8CCB3A3E74 /* FirebaseFirestore in Frameworks */,
+				C0AEDBEA4AFBFD00A7704505 /* FirebaseFunctions in Frameworks */,
+				BFAC4D935564CDE34A6D6182 /* GoogleSignIn in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		140A37B4DF1FF6C7E2871765 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				2877A02A725FF21B35BDA3ED /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		1CF84AD734111D36D76C8760 /* NeuroCalmUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7DDF99EF79975911EFA0AA42 /* ScreenTourUITests.swift */,
+			);
+			path = NeuroCalmUITests;
+			sourceTree = "<group>";
+		};
+		5B9F75F288F937B0734664A3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AE06927FB4270F66B3B2B5F7 /* Audio */,
+				C9DBC879DD21B34133158DB9 /* Knowledge */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8CD256BD8F61C8BDC27DC2A4 /* NeuroCalmTests */ = {
+			isa = PBXGroup;
+			children = (
+				5F999813D9D25CA3DC9EE017 /* CoreLogicTests.swift */,
+			);
+			path = NeuroCalmTests;
+			sourceTree = "<group>";
+		};
+		998517181B0F4D8BEB08DC34 = {
+			isa = PBXGroup;
+			children = (
+				C55A87EC58B45D9EE94F2118 /* NeuroCalm */,
+				8CD256BD8F61C8BDC27DC2A4 /* NeuroCalmTests */,
+				1CF84AD734111D36D76C8760 /* NeuroCalmUITests */,
+				CD603FC3C6FF785CD13AA96D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C6528E61B65ECE1AA5170E6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8565F32173AD18758E5462D2 /* AppleIntelligenceService.swift */,
+				77AB70435463212B012B00AB /* AssistantService.swift */,
+				46147175360926E52C59C971 /* AudioPlayerService.swift */,
+				A6DF88371D9F882ADA78F4C9 /* AuthService.swift */,
+				61D70D291886C262EA2EE4B1 /* BreathingVoiceService.swift */,
+				B6D337E0BD88B80D85E24206 /* CalendarService.swift */,
+				E7452B926EBC9747E95B91CA /* EncouragementService.swift */,
+				BBC5E4F4E94DCDA974A7D344 /* FeatureFlags.swift */,
+				8A8C117F7E76AAF28F9AAA0A /* HealthKitService.swift */,
+				F69AE5241BDA91C558606E15 /* KnowledgeBase.swift */,
+				7660D188E079264A970B16DB /* NotificationService.swift */,
+				D5D2690EAABE71F353312108 /* TeamService.swift */,
+				A967AB5F8C91D3AD016B75EE /* YogaTradition.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A8424AE5197E9559482874DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AC47633B75C631EBFEF9D7B0 /* AssistantConversation.swift */,
+				B9313FD5B11D0BF59784ADEB /* Badge.swift */,
+				3BBFF518CCE2FE66ACC02338 /* Bookmark.swift */,
+				F93A6CAF9A6FCB1DFA2E9EF7 /* BreathingSession.swift */,
+				31AAFAB46D4308252DE0349D /* CalmLog.swift */,
+				C18ACD078D4D7817EE2DCDE1 /* Challenge.swift */,
+				41B3B72A088510F29DD212D9 /* Deadline.swift */,
+				5CFAA8775731CA16286BC797 /* MeditationTrack.swift */,
+				497CC56740CB223552F29C52 /* MoodCheckIn.swift */,
+				F084B69C63CD212C3D350BA1 /* RoutineTask.swift */,
+				A09A8E20871D04DCD4B65957 /* SampleData.swift */,
+				DCDB002AC86A99C9E8BE95B9 /* School.swift */,
+				C7F98A78DD058522E5CFEDBA /* StreakLogic.swift */,
+				F1DFE9569607D236471D42E9 /* TeamChallenge.swift */,
+				FC752132F13A79966D33AE54 /* UserProfile.swift */,
+				B6C55B60B057B5BF7A3F4CAA /* WellnessScore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AE06927FB4270F66B3B2B5F7 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				17CEC1A96164BC29002FEB47 /* shavasana-1.mp3 */,
+				CB747E4E4F04BD08A06FA959 /* shavasana-2.mp3 */,
+				5A8D16B4CDFAF44B6D11AFD4 /* shavasana-3.mp3 */,
+				D7EDC914B43DF643B1983530 /* shavasana-powernap.mp3 */,
+				3DEDE17ADEF462AE0650BD2D /* yoga-nap.mp3 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		BBF0646FE4A3D328AE27E679 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				28B78187EFE9A5D3F63D5180 /* AdaptiveMainView.swift */,
+				FD1E040E3EF564F72C954980 /* AssistantView.swift */,
+				57AC230A35EE4CCCD07B202C /* BadgesView.swift */,
+				C6AD03D71DFB269B9C44A451 /* BreathingView.swift */,
+				C36608DE73D0DB594775307D /* CalmRingView.swift */,
+				CE0270DA458665C2ADAC5EC7 /* ChallengesView.swift */,
+				609422EBEAE0E4A3B18F521E /* HomeView.swift */,
+				218DAF8903F4961B7DFD92F9 /* LoginView.swift */,
+				0585928007EDFBF8903D8F10 /* MainSplitView.swift */,
+				3075442DFD8DC8ED8A83E403 /* MainTabView.swift */,
+				BDCAD77EDF4306C8294DDD5C /* OnboardingView.swift */,
+				A3656C41998B036D47319697 /* PlannerView.swift */,
+				82973FF641CA8656D31BDB73 /* PracticeAnimationView.swift */,
+				BA919652253CE8733E4EF8B4 /* PracticeDetailView.swift */,
+				7912B131D4A37376E2520FE2 /* PracticeLibraryView.swift */,
+				60D89A4AB6DB09C3A47D04F5 /* RelaxView.swift */,
+				E2CB2DE80DCDE6CBCD20E6E1 /* SettingsView.swift */,
+				18A32ABFECF81CC89540829E /* ShareCardView.swift */,
+				5C736DB81395D96A5356ACFA /* SocialShare.swift */,
+				CE6ED25597830C1E912E0542 /* StatsView.swift */,
+				1BC14F739CEFA9BE9BADA9EF /* SupportView.swift */,
+				5A1FC966DE2918ADB088A20A /* TeamChallengeViews.swift */,
+				C6915B7C95058680933860C3 /* WelcomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C55A87EC58B45D9EE94F2118 /* NeuroCalm */ = {
+			isa = PBXGroup;
+			children = (
+				AD7EBF3B12690346E6FC9217 /* Assets.xcassets */,
+				E8BC678FA2E0DA2F01B2525B /* GoogleService-Info.plist */,
+				12C7C206797E35EDA0A9680F /* Info.plist */,
+				00E3483030056DF42DF57BA9 /* NeuroCalm.entitlements */,
+				8BDE059CFF28AF7292821164 /* NeuroCalmApp.swift */,
+				EBD5BDEBD28DDE4D5C08B2EE /* RootView.swift */,
+				A8424AE5197E9559482874DB /* Models */,
+				5B9F75F288F937B0734664A3 /* Resources */,
+				9C6528E61B65ECE1AA5170E6 /* Services */,
+				140A37B4DF1FF6C7E2871765 /* Theme */,
+				BBF0646FE4A3D328AE27E679 /* Views */,
+			);
+			path = NeuroCalm;
+			sourceTree = "<group>";
+		};
+		C9DBC879DD21B34133158DB9 /* Knowledge */ = {
+			isa = PBXGroup;
+			children = (
+				3E770290D00B5FEA28111466 /* practices.json */,
+			);
+			path = Knowledge;
+			sourceTree = "<group>";
+		};
+		CD603FC3C6FF785CD13AA96D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8322709AF14237C20D8699A0 /* NeuroCalm.app */,
+				371EE62A54278BE25B14A88F /* NeuroCalmTests.xctest */,
+				09F51FE1A7A2EDBB84912D33 /* NeuroCalmUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0FF4186447C98D8DCDF3DFE0 /* NeuroCalmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E72CD3F60A184EAFF3DEA16E /* Build configuration list for PBXNativeTarget "NeuroCalmTests" */;
+			buildPhases = (
+				6B9F298082B02383438CD280 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7848B17C8CF86D616C90F569 /* PBXTargetDependency */,
+			);
+			name = NeuroCalmTests;
+			packageProductDependencies = (
+			);
+			productName = NeuroCalmTests;
+			productReference = 371EE62A54278BE25B14A88F /* NeuroCalmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3B096DC6208A026A66D45B94 /* NeuroCalm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 546C2581B0BD671A2615057B /* Build configuration list for PBXNativeTarget "NeuroCalm" */;
+			buildPhases = (
+				08D9E944C0AC7FA8C1ED3C8F /* Sources */,
+				EA3A1F235B6700827030FDB6 /* Resources */,
+				47CB81E686681AF37E1E51F1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NeuroCalm;
+			packageProductDependencies = (
+				348A633472C692F78A4D3D89 /* FirebaseAuth */,
+				529C66AA24A5D2B9D5553D4B /* FirebaseFirestore */,
+				774539E188F7E3BD9B3D69B9 /* FirebaseFunctions */,
+				0686D161C9D635ED688EFBD6 /* GoogleSignIn */,
+			);
+			productName = NeuroCalm;
+			productReference = 8322709AF14237C20D8699A0 /* NeuroCalm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F1BFC702919D0733F1C4365E /* NeuroCalmUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B8AC28F4738855BA26564DB /* Build configuration list for PBXNativeTarget "NeuroCalmUITests" */;
+			buildPhases = (
+				8622F55A12B98A3D33C7A5CC /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92844F0C6D2C3D4ACAF500C8 /* PBXTargetDependency */,
+			);
+			name = NeuroCalmUITests;
+			packageProductDependencies = (
+			);
+			productName = NeuroCalmUITests;
+			productReference = 09F51FE1A7A2EDBB84912D33 /* NeuroCalmUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2CFC5F68F2083825A914190B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0FF4186447C98D8DCDF3DFE0 = {
+						DevelopmentTeam = 88944EY694;
+					};
+					3B096DC6208A026A66D45B94 = {
+						DevelopmentTeam = 88944EY694;
+						ProvisioningStyle = Automatic;
+					};
+					F1BFC702919D0733F1C4365E = {
+						DevelopmentTeam = 88944EY694;
+						TestTargetID = 3B096DC6208A026A66D45B94;
+					};
+				};
+			};
+			buildConfigurationList = 97385750C1CD7E4CEC27A211 /* Build configuration list for PBXProject "NeuroCalm" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 998517181B0F4D8BEB08DC34;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				540EF03C5A3A12CDFAB7ABF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1C6EA4BB4FBC36D22F8C0D1D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CD603FC3C6FF785CD13AA96D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B096DC6208A026A66D45B94 /* NeuroCalm */,
+				0FF4186447C98D8DCDF3DFE0 /* NeuroCalmTests */,
+				F1BFC702919D0733F1C4365E /* NeuroCalmUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA3A1F235B6700827030FDB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39DA4A847ECA6A04A4F09330 /* Assets.xcassets in Resources */,
+				4770FC5E65DD7CF9FAD4D2D9 /* GoogleService-Info.plist in Resources */,
+				923490E125E3D5F89764C486 /* practices.json in Resources */,
+				8E845D2A796ECF7491A1E86F /* shavasana-1.mp3 in Resources */,
+				D2139F24290A84D5EAE817E6 /* shavasana-2.mp3 in Resources */,
+				4EAC2C6A079AF0A74289891D /* shavasana-3.mp3 in Resources */,
+				5D33092A3CFE981ED0E5AAC5 /* shavasana-powernap.mp3 in Resources */,
+				5F453D75980011EC77A786E2 /* yoga-nap.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		08D9E944C0AC7FA8C1ED3C8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4C4FCE40A0A18E6C228F001 /* AdaptiveMainView.swift in Sources */,
+				0230EAED07E1E6D62CA19501 /* AppTheme.swift in Sources */,
+				7789278BAE9DE6BBF0FB6926 /* AppleIntelligenceService.swift in Sources */,
+				485A258BD9F400972687EF41 /* AssistantConversation.swift in Sources */,
+				6CB9CEA0DB2348A9244D7543 /* AssistantService.swift in Sources */,
+				7CFAF46E527A2C26BE9A55EC /* AssistantView.swift in Sources */,
+				EB60603CCEB4739048D183D4 /* AudioPlayerService.swift in Sources */,
+				3F31C322A690C00D7B012FD7 /* AuthService.swift in Sources */,
+				9DE9B04EC790308498D3EE60 /* Badge.swift in Sources */,
+				06D5C0F963A95437D3B5754C /* BadgesView.swift in Sources */,
+				908464899E2F18040393FACD /* Bookmark.swift in Sources */,
+				FF747E9ED26302730E3EF220 /* BreathingSession.swift in Sources */,
+				F423FF4AE25A4C31210EEBEF /* BreathingView.swift in Sources */,
+				22DB51CA6ECB4079C58EDF9D /* BreathingVoiceService.swift in Sources */,
+				A1FB90417971059B0D5F9520 /* CalendarService.swift in Sources */,
+				F3914DA3A27EC544EC5EC490 /* CalmLog.swift in Sources */,
+				C7FC79EF471CC623C377486C /* CalmRingView.swift in Sources */,
+				B9CD19EC27621514E475FD4C /* Challenge.swift in Sources */,
+				6243C2D7E13B20D0830829EC /* ChallengesView.swift in Sources */,
+				C1FF07D181DEEBD47DE7C3BE /* Deadline.swift in Sources */,
+				21B2105AD1677851EBB58DCA /* EncouragementService.swift in Sources */,
+				0F8E0FCFB4B9E3B71D0854EF /* FeatureFlags.swift in Sources */,
+				B4532319C5831535D6DBFFC8 /* HealthKitService.swift in Sources */,
+				BE82E3BF35E3DD5017280564 /* HomeView.swift in Sources */,
+				7C6A2E41A24C7C82DBDC57ED /* KnowledgeBase.swift in Sources */,
+				16F7903803BD9CB7EB051659 /* LoginView.swift in Sources */,
+				2BCF60DE1493F7152A4C4F4E /* MainSplitView.swift in Sources */,
+				81384BB2C1971A109576C0A9 /* MainTabView.swift in Sources */,
+				80688649D233E8D4F4797189 /* MeditationTrack.swift in Sources */,
+				29ECB0963F215C35D838F372 /* MoodCheckIn.swift in Sources */,
+				5C4EF91D9F28393D07AF6041 /* NeuroCalmApp.swift in Sources */,
+				EF460BE5E8FBAA5B176913BE /* NotificationService.swift in Sources */,
+				A20A42C0C767E384ADAB3A18 /* OnboardingView.swift in Sources */,
+				6D5273A63759827BD7513172 /* PlannerView.swift in Sources */,
+				E6E32AA442F19DC5CCA4C6F7 /* PracticeAnimationView.swift in Sources */,
+				7F5D2DCBDF0762F3C83993CA /* PracticeDetailView.swift in Sources */,
+				A0CA214D2B7F72A64F86CD54 /* PracticeLibraryView.swift in Sources */,
+				B7E832598DE53BA5C607071C /* RelaxView.swift in Sources */,
+				B11B3E1CAEEE67C925DAF6BB /* RootView.swift in Sources */,
+				30BC050E4190A24568E6E146 /* RoutineTask.swift in Sources */,
+				D11105B8DB6A2ECA723E6CDC /* SampleData.swift in Sources */,
+				5B1D593B5BFCF621D7E360D6 /* School.swift in Sources */,
+				63802E522F9AD48A14A3B190 /* SettingsView.swift in Sources */,
+				8ECF91DBD22CB180BECA8713 /* ShareCardView.swift in Sources */,
+				E4EE13A0322E795BCC286AB9 /* SocialShare.swift in Sources */,
+				4F5AF233B363E634FA30E030 /* StatsView.swift in Sources */,
+				E372B742D8C6B92A43BD33CE /* StreakLogic.swift in Sources */,
+				AF11893A746C33C3B2E4D4E1 /* SupportView.swift in Sources */,
+				36109259F0DF64BECE810299 /* TeamChallenge.swift in Sources */,
+				32259864AC5CAADE303A60B3 /* TeamChallengeViews.swift in Sources */,
+				48EC132A312126E6A1DD66F5 /* TeamService.swift in Sources */,
+				89F4DEEBB8DC60311F7049D4 /* UserProfile.swift in Sources */,
+				CFF2B107A661FD1CA5A55732 /* WelcomeView.swift in Sources */,
+				1267FF8FD4A96B89CA65879C /* WellnessScore.swift in Sources */,
+				666E9FF3B5EEAB4A67C5DD3C /* YogaTradition.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B9F298082B02383438CD280 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44C5C157058CCE8E29DA4939 /* CoreLogicTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8622F55A12B98A3D33C7A5CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9BC10AE050ED709E0C21319 /* ScreenTourUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7848B17C8CF86D616C90F569 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B096DC6208A026A66D45B94 /* NeuroCalm */;
+			targetProxy = 8CDF671F7586858DC2A7FA21 /* PBXContainerItemProxy */;
+		};
+		92844F0C6D2C3D4ACAF500C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B096DC6208A026A66D45B94 /* NeuroCalm */;
+			targetProxy = DBE8989DDBEF360768E23C10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		292D711FB85ED7328E259F06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 88944EY694;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalmTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NeuroCalm.app/NeuroCalm";
+			};
+			name = Release;
+		};
+		5CA5C93E08241A82424F89CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NeuroCalm/NeuroCalm.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88944EY694;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NeuroCalm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalm;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		68A05D414F9FF6B804F7825E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 88944EY694;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalmUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NeuroCalm;
+			};
+			name = Release;
+		};
+		9B77083C8B6F67E20B8FEC4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 88944EY694;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalmTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NeuroCalm.app/NeuroCalm";
+			};
+			name = Debug;
+		};
+		AB3B315EF101BF28DEFF6168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 88944EY694;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalmUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NeuroCalm;
+			};
+			name = Debug;
+		};
+		ADD9E033375164611A880E64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NeuroCalm/NeuroCalm.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88944EY694;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NeuroCalm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalm;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DA6C03462DF2FFA5A9C1E981 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E986C5E91FC8C20EAA685AEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		546C2581B0BD671A2615057B /* Build configuration list for PBXNativeTarget "NeuroCalm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADD9E033375164611A880E64 /* Debug */,
+				5CA5C93E08241A82424F89CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5B8AC28F4738855BA26564DB /* Build configuration list for PBXNativeTarget "NeuroCalmUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB3B315EF101BF28DEFF6168 /* Debug */,
+				68A05D414F9FF6B804F7825E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		97385750C1CD7E4CEC27A211 /* Build configuration list for PBXProject "NeuroCalm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA6C03462DF2FFA5A9C1E981 /* Debug */,
+				E986C5E91FC8C20EAA685AEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E72CD3F60A184EAFF3DEA16E /* Build configuration list for PBXNativeTarget "NeuroCalmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B77083C8B6F67E20B8FEC4A /* Debug */,
+				292D711FB85ED7328E259F06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1C6EA4BB4FBC36D22F8C0D1D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
+		540EF03C5A3A12CDFAB7ABF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0686D161C9D635ED688EFBD6 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C6EA4BB4FBC36D22F8C0D1D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		348A633472C692F78A4D3D89 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 540EF03C5A3A12CDFAB7ABF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		529C66AA24A5D2B9D5553D4B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 540EF03C5A3A12CDFAB7ABF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		774539E188F7E3BD9B3D69B9 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 540EF03C5A3A12CDFAB7ABF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2CFC5F68F2083825A914190B /* Project object */;
+}
