@@ -3,8 +3,7 @@
 //  NeuroCalm
 //
 //  Calm challenges — your active goals with progress, featured challenges to
-//  start, and a "with friends" team section (the shared/multiplayer part lands
-//  with the team backend).
+//  start, and a "with friends" section for team challenges (Firestore-backed).
 //
 
 import SwiftUI

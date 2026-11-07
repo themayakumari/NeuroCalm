@@ -4,7 +4,7 @@ title: NeuroCalm Privacy Policy
 
 # NeuroCalm Privacy Policy
 
-_Last updated: October 25, 2026_
+_Last updated: October 31, 2026_
 
 NeuroCalm is a stress and focus companion for students. This policy explains what information the app uses and how it is protected.
 
@@ -20,7 +20,15 @@ To sign in, NeuroCalm uses Firebase Authentication (a Google service). Depending
 - **Sign in with Google:** your name, email address and a user ID.
 - **School code:** an anonymous user ID and the name of your school. No email address is collected.
 
-This information is used only to sign you in. It is never sold, shared for advertising, or used to track you.
+If you join with a school code (when signing in, or later in Settings), the school's name and ID are saved to your account in Firebase Cloud Firestore so they come back if you sign in on another phone. You can remove your school in Settings.
+
+This information is used only to sign you in and link you to your school. It is never sold, shared for advertising, or used to track you.
+
+## Team challenges with friends
+
+If you create or join a challenge with friends, NeuroCalm stores the challenge in Firebase Cloud Firestore with the name you choose for the leaderboard and your progress count for that challenge. Your account also keeps a list of the challenges you are in, so they come back on a new phone and can be cleaned up when you delete your account. Only people in the same challenge can see that name and count. Nothing else is shared: your moods, sessions and Calm Log stay on your device. You can leave a challenge at any time, which removes your name and count.
+
+You can report or block someone from the leaderboard. A report sends us the reported name, both people's user IDs and the challenge, so we can review it and remove offensive names. We delete a report once we have reviewed it. The person is not told who reported them. Blocking hides someone on your phone only, and they are not told.
 
 ## Permissions you control
 
@@ -36,7 +44,12 @@ NeuroCalm has no advertising, no analytics and no third-party trackers.
 
 ## Your choices
 
-You can sign out at any time in Settings, and **Reset all data** deletes your profile, tasks, deadlines and sessions from your device. Deleting the app removes all of the data stored on your device. To have your sign-in account deleted, contact us at the email below.
+- **Sign out** at any time in Settings.
+- **Reset all data** in Settings deletes everything NeuroCalm stores on your device: your profile, streaks, moods, tasks, deadlines, sessions, Calm Log, bookmarks, challenges and assistant conversations.
+- **Delete my account** in Settings permanently deletes your sign-in account, your saved school, your list of team challenges, your entries and creator ID on those challenges, and all the data on your device. A challenge with no members left is deleted. If you signed in with Apple, NeuroCalm also removes its access to your Apple ID. Accounts made with a school code can't be reopened after signing out, so delete them first, or email us for help.
+- **Switching accounts:** if a different account signs in on your device, the NeuroCalm data stored there is erased.
+
+Deleting the app also removes all of the data stored on your device.
 
 ## Children and students
 

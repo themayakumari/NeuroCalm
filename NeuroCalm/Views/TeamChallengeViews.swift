@@ -3,6 +3,7 @@
 //  NeuroCalm
 //
 //  Create / join sheets and the leaderboard for shared "with friends" challenges.
+//  The only things friends see are the name picked here and the challenge count.
 //
 
 import SwiftUI
@@ -14,6 +15,8 @@ struct CreateTeamChallengeSheet: View {
     @EnvironmentObject private var auth: AuthService
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
+
+    @AppStorage(LeaderboardName.key) private var leaderboardName = ""
 
     @State private var created: TeamChallenge?
     @State private var busy = false
@@ -28,6 +31,7 @@ struct CreateTeamChallengeSheet: View {
                     } else {
                         Text("Pick a challenge to start with friends. You'll get a code to share.")
                             .font(.subheadline).foregroundStyle(AppTheme.textSecondary)
+                        LeaderboardNameField(name: $leaderboardName)
                         ForEach(ChallengeCatalog.featured) { template in
                             Button { create(template) } label: { templateRow(template) }
                                 .buttonStyle(.plain)
@@ -87,7 +91,7 @@ struct CreateTeamChallengeSheet: View {
         Task { @MainActor in
             defer { busy = false }
             do {
-                let tc = try await TeamService.create(template: template, uid: uid, name: auth.friendlyName)
+                let tc = try await TeamService.create(template: template, uid: uid, name: leaderboardName)
                 context.insert(TeamMembership(challengeId: tc.id, title: tc.title))
                 try? context.save()
                 created = tc
@@ -104,6 +108,9 @@ struct JoinTeamChallengeSheet: View {
     @EnvironmentObject private var auth: AuthService
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
+
+    @AppStorage(LeaderboardName.key) private var leaderboardName = ""
+    @Query private var memberships: [TeamMembership]
 
     @State private var code = ""
     @State private var busy = false
@@ -122,6 +129,7 @@ struct JoinTeamChallengeSheet: View {
                     .font(AppTheme.mono(24, weight: .semibold))
                     .foregroundStyle(AppTheme.textPrimary)
                     .padding().background(AppTheme.twilight2).cornerRadius(AppTheme.cardRadius)
+                LeaderboardNameField(name: $leaderboardName)
                 if let error { Text(error).font(.caption).foregroundStyle(AppTheme.ember).multilineTextAlignment(.center) }
                 Button { join() } label: {
                     Group { if busy { ProgressView().tint(AppTheme.ink) } else { Text("Join").fontWeight(.semibold) } }
@@ -145,9 +153,11 @@ struct JoinTeamChallengeSheet: View {
         Task { @MainActor in
             defer { busy = false }
             do {
-                let tc = try await TeamService.join(code: code, uid: uid, name: auth.friendlyName)
-                context.insert(TeamMembership(challengeId: tc.id, title: tc.title))
-                try? context.save()
+                let tc = try await TeamService.join(code: code, uid: uid, name: leaderboardName)
+                if !memberships.contains(where: { $0.challengeId == tc.id }) {
+                    context.insert(TeamMembership(challengeId: tc.id, title: tc.title))
+                    try? context.save()
+                }
                 dismiss()
             } catch {
                 self.error = error.localizedDescription
@@ -162,10 +172,19 @@ struct TeamChallengeDetailView: View {
     let challengeId: String
 
     @EnvironmentObject private var auth: AuthService
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
     @Query private var logs: [CalmLog]
+    @Query private var memberships: [TeamMembership]
 
     @State private var challenge: TeamChallenge?
     @State private var error: String?
+    @State private var showLeaveConfirm = false
+    @State private var leaving = false
+    @AppStorage(BlockedMembers.key) private var blockedRaw = ""
+    @State private var reportTarget: MemberProgress?
+    @State private var blockTarget: MemberProgress?
+    @State private var showReportSent = false
 
     var body: some View {
         ScrollView {
@@ -174,11 +193,30 @@ struct TeamChallengeDetailView: View {
                     header(challenge, template)
                     Text("Leaderboard")
                         .font(AppTheme.mono(11)).textCase(.uppercase).foregroundStyle(AppTheme.mist)
-                    ForEach(Array(challenge.members.enumerated()), id: \.element.id) { index, member in
+                    let visible = BlockedMembers.visible(challenge.members, raw: blockedRaw)
+                    ForEach(Array(visible.enumerated()), id: \.element.id) { index, member in
                         memberRow(index: index, member: member, target: template.target, unit: template.metric.unit)
                     }
+                    if visible.count < challenge.members.count {
+                        Button { unblock(challenge.members) } label: {
+                            Text("Unblock hidden members (\(challenge.members.count - visible.count))")
+                                .font(.caption)
+                        }
+                    }
+                    if let error {
+                        Text(error).font(.caption).foregroundStyle(AppTheme.ember)
+                    }
+                    Button(role: .destructive) { showLeaveConfirm = true } label: {
+                        Group { if leaving { ProgressView() } else { Text("Leave challenge") } }
+                            .font(.subheadline).frame(maxWidth: .infinity).padding(.vertical, 12)
+                    }
+                    .disabled(leaving)
+                    .padding(.top, 8)
                 } else if let error {
                     Text(error).font(.subheadline).foregroundStyle(AppTheme.ember)
+                    Button(role: .destructive) { leave() } label: {
+                        Text("Remove from my list").font(.subheadline)
+                    }
                 } else {
                     ProgressView().frame(maxWidth: .infinity).padding(.top, 40)
                 }
@@ -191,6 +229,35 @@ struct TeamChallengeDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .task { await refresh() }
         .refreshable { await refresh() }
+        .alert("Leave this challenge?", isPresented: $showLeaveConfirm) {
+            Button("Cancel", role: .cancel) {}
+            Button("Leave", role: .destructive) { leave() }
+        } message: {
+            Text("Your name and progress will be removed from the leaderboard. You can rejoin with the code.")
+        }
+        .alert("Report this name?", isPresented: Binding(
+            get: { reportTarget != nil },
+            set: { if !$0 { reportTarget = nil } }
+        ), presenting: reportTarget) { member in
+            Button("Cancel", role: .cancel) {}
+            Button("Report", role: .destructive) { report(member) }
+        } message: { member in
+            Text("We'll review \"\(member.name)\" and remove it if it's offensive. They won't know who reported it.")
+        }
+        .alert("Report sent", isPresented: $showReportSent) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Thanks for letting us know. We review reports every day.")
+        }
+        .alert("Block this person?", isPresented: Binding(
+            get: { blockTarget != nil },
+            set: { if !$0 { blockTarget = nil } }
+        ), presenting: blockTarget) { member in
+            Button("Cancel", role: .cancel) {}
+            Button("Block", role: .destructive) { block(member) }
+        } message: { member in
+            Text("You won't see \"\(member.name)\" on your leaderboards. They won't be told.")
+        }
     }
 
     private func header(_ tc: TeamChallenge, _ template: ChallengeTemplate) -> some View {
@@ -234,6 +301,23 @@ struct TeamChallengeDetailView: View {
                 }
                 .frame(height: 8)
             }
+            if !isMe {
+                Menu {
+                    Button { reportTarget = member } label: {
+                        Label("Report name", systemImage: "flag")
+                    }
+                    Button(role: .destructive) { blockTarget = member } label: {
+                        Label("Block", systemImage: "hand.raised")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .font(.subheadline)
+                        .foregroundStyle(AppTheme.mist)
+                        .frame(width: 32, height: 32)
+                        .contentShape(Rectangle())
+                }
+                .accessibilityLabel("Options for \(member.name)")
+            }
         }
         .padding(14)
         .background(AppTheme.twilight2)
@@ -255,6 +339,83 @@ struct TeamChallengeDetailView: View {
             error = nil
         } catch {
             self.error = error.localizedDescription
+        }
+    }
+
+    private func leave() {
+        guard let uid = auth.uid else { error = TeamError.notSignedIn.errorDescription; return }
+        leaving = true
+        Task { @MainActor in
+            defer { leaving = false }
+            do {
+                try await TeamService.leave(id: challengeId, uid: uid)
+            } catch TeamError.notFound {
+                // Already gone; just drop it from this phone.
+            } catch {
+                self.error = error.localizedDescription
+                return
+            }
+            removeLocal()
+            dismiss()
+        }
+    }
+
+    private func report(_ member: MemberProgress) {
+        guard let uid = auth.uid else { error = TeamError.notSignedIn.errorDescription; return }
+        Task { @MainActor in
+            do {
+                try await TeamService.report(challengeId: challengeId, member: member, reporterUid: uid)
+                showReportSent = true
+            } catch {
+                self.error = error.localizedDescription
+            }
+        }
+    }
+
+    private func block(_ member: MemberProgress) {
+        var ids = BlockedMembers.ids(from: blockedRaw)
+        ids.insert(member.id)
+        blockedRaw = BlockedMembers.raw(from: ids)
+    }
+
+    /// Show this challenge's blocked members again.
+    private func unblock(_ members: [MemberProgress]) {
+        let ids = BlockedMembers.ids(from: blockedRaw).subtracting(members.map(\.id))
+        blockedRaw = BlockedMembers.raw(from: ids)
+    }
+
+    /// Forget this challenge on this phone.
+    private func removeLocal() {
+        for m in memberships where m.challengeId == challengeId { context.delete(m) }
+        try? context.save()
+    }
+}
+
+// MARK: - Leaderboard name
+
+/// The name friends see on team leaderboards, remembered between challenges.
+enum LeaderboardName {
+    static let key = "teamDisplayName"
+}
+
+struct LeaderboardNameField: View {
+    @Binding var name: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Your name on the leaderboard")
+                .font(.caption).foregroundStyle(AppTheme.mist)
+            TextField("Nickname", text: $name)
+                .textInputAutocapitalization(.words)
+                .foregroundStyle(AppTheme.textPrimary)
+                .padding(12).background(AppTheme.twilight2).cornerRadius(AppTheme.cardRadius)
+                .onChange(of: name) { _, new in
+                    if new.count > TeamService.maxNameLength {
+                        name = String(new.prefix(TeamService.maxNameLength))
+                    }
+                }
+            Text("Use a nickname, not your full name. If you leave it blank, you'll show as Friend. People in the challenge see this name and your count, nothing else. Offensive names aren't allowed and will be removed.")
+                .font(.caption2).foregroundStyle(AppTheme.textSecondary)
         }
     }
 }

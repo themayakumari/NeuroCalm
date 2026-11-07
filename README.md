@@ -86,30 +86,55 @@ The Firebase project is **`neurocalm-e61f4`** and `GoogleService-Info.plist` is 
 **1. Authentication** → *Sign-in method* → enable:
 - **Apple**, **Google**, and **Anonymous** (Anonymous powers the school-code join).
 
-**2. Firestore Database** → *Create database* → then set these **Rules**:
+**2. Firestore Database** → *Create database* → then deploy the security rules in [`firestore.rules`](firestore.rules):
 
 ```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Team challenges: any signed-in user can create/join/update.
-    match /teamChallenges/{id} {
-      allow read, create, update: if request.auth != null;
-    }
-    // School lookup for the "join with a code" login.
-    match /schools/{id} {
-      allow read: if request.auth != null;
-    }
-  }
-}
+firebase deploy --only firestore:rules
 ```
 
-- To test the **school-code login**, add a `schools` collection with documents that have `name` and `code` fields (e.g. `{ name: "Lincoln High", code: "LINCOLN24" }`).
-- **Team challenges** need no seed data — a student creates one in-app and shares the 6-character code.
+(Or paste the file into *Firestore Database* → *Rules* and press *Publish*.) The rules let each student change only their own entry on a team challenge, read and change only their own `users/{uid}` record (which holds just their school), keep schools read-only, let students send (but not read) `reports` of leaderboard names, and deny everything else.
+
+Check the `reports` collection in the console every day. If a name is offensive, delete that person's entry from `members` on the challenge (`reports.challengeId` and `reports.reportedUid` tell you which), then delete the report.
+
+- To add a **school**, create a document in `schools` whose **Document ID is the code in capitals** (e.g. `LINCOLN24`), with a `name` field (e.g. `Lincoln High`). Codes can only be opened by exact match; nobody can list them.
+- **Team challenges** need no seed data — a student creates one in-app and shares the 6-character code. The code is the challenge's document ID, and only its members can read it.
 
 **Assistant:** the app's assistant runs **on-device (Apple Intelligence)** and falls back to a built-in helper. Both are free and need no setup.
 
-**Privacy note:** a student's private data (mood, breathing history, `CalmLog`, assistant chats) never leaves the device. Team challenges share only a member's *challenge count*.
+**Privacy note:** a student's private data (mood, breathing history, `CalmLog`, assistant chats) never leaves the device. Team challenges share only a member's chosen leaderboard name and *challenge count*. The account record in `users/{uid}` holds only the student's school id and name.
+
+---
+
+## 4c. Practices and guided audio (Firebase Storage)
+
+The practice library and the guided audio list come from **one JSON file in Firebase Storage**, so you can change practices, add new recordings, or swap in better-quality audio **without an app update**. The app downloads the file at launch and saves it on the phone: audio changes show up right away, practice changes on the next launch. If the file is missing, offline, or has a mistake, the app keeps the last good copy, and falls back to the bundled `practices.json` + the 5 bundled relaxation tracks.
+
+**One-time setup** (Firebase console, project `neurocalm-e61f4`):
+1. Upgrade to the **Blaze** plan (needed for Storage), then in Google Cloud **Billing → Budgets & alerts** add a small budget (e.g. $1) so you get an email if anything ever costs money.
+2. **Storage → Get started**, then paste the rules from `storage.rules` into **Storage → Rules** and publish. They let anyone *read* `content/` and `audio/`, and block all writes from the app.
+3. Upload `FirebaseContent/content.json` from this repo to the Storage folder **`content/`** (so its path is `content/content.json`).
+
+**To change content:** edit `FirebaseContent/content.json`, then upload it again to `content/` (same name, it replaces the old one).
+
+- `practices` — the same fields as `NeuroCalm/Resources/Knowledge/practices.json`.
+- `tracks` — one entry per audio file:
+
+```json
+{ "id": "humming-bee-guided", "title": "Humming Bee Breath", "subtitle": "Guided practice",
+  "duration": "6:00", "category": "practice", "file": "audio/humming-bee.mp3",
+  "practiceIds": ["bhramari"], "order": 1, "version": 1 }
+```
+
+| Field | Meaning |
+|---|---|
+| `id` | Unique, never change it (bookmarks use it). Reuse a bundled id (e.g. `yoga-nap`) to update that track. |
+| `category` | `relaxation` (Relax list), `breathing` (Relax → Guided breathing), or `practice` (only inside a practice). |
+| `file` | Path of the audio in Storage (upload it to the `audio/` folder first), or a full `https://` link. Leave it out for the bundled tracks. |
+| `practiceIds` | Practice ids this track plays under (fills the "Guided audio" section on that practice). |
+| `version` | Bump it when you replace an audio file, so phones download the new one. |
+| `active` | `false` hides a track without deleting it. |
+
+Tip: check the file in a JSON validator (or open it in Xcode) before uploading. A broken entry is skipped, and a completely broken file is ignored.
 
 ---
 

@@ -21,18 +21,24 @@ final class AuthService: NSObject, ObservableObject {
     @Published var errorMessage: String?
     /// True while a school-code join is in flight (for the join UI).
     @Published var isJoining = false
+    /// Set when a school code was linked to an already signed-in account.
+    @Published var didLinkSchool = false
 
     var isSignedIn: Bool { user != nil }
     var displayName: String? { user?.displayName }
     var uid: String? { user?.uid }
-    /// A friendly name for team leaderboards.
-    var friendlyName: String {
-        if let name = user?.displayName, !name.isEmpty { return name }
-        return "Me"
+    /// True when the account signs in with Apple (deleting it asks Apple to confirm).
+    var usesAppleSignIn: Bool {
+        user?.providerData.contains { $0.providerID == "apple.com" } ?? false
     }
+    /// Signed in with a school code (no Apple or Google account).
+    var isAnonymous: Bool { user?.isAnonymous ?? false }
 
     /// A nonce kept between starting the Apple request and receiving its result.
     private var currentNonce: String?
+
+    /// Waits for the Apple sheet shown while deleting an account.
+    private var appleReauthContinuation: CheckedContinuation<ASAuthorizationAppleIDCredential, Error>?
 
     private var authHandle: AuthStateDidChangeListenerHandle?
 
@@ -40,15 +46,121 @@ final class AuthService: NSObject, ObservableObject {
         super.init()
         user = Auth.auth().currentUser
         authHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
-            Task { @MainActor in self?.user = user }
+            Task { @MainActor in
+                let previous = self?.user?.uid
+                self?.user = user
+                if let uid = user?.uid, uid != previous {
+                    // Bring the account's school onto this phone.
+                    try? await SchoolService.restoreFromAccount(uid: uid)
+                }
+            }
         }
     }
 
     func signOut() {
         do {
             try Auth.auth().signOut()
+            // The school lives on the account; the next sign-in restores it.
+            SchoolService.clearLocal()
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+
+    // MARK: - Delete account
+
+    /// Permanently delete the signed-in account: leave any team challenges,
+    /// then delete the Firebase user. Apple accounts confirm with a fresh
+    /// Apple sign-in so the app can also revoke its Apple access, and Google
+    /// accounts sign in again if Firebase asks for a recent login.
+    /// Local data is wiped separately by the caller.
+    func deleteAccount(teamChallengeIds: [String]) async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        let providers = Set(user.providerData.map(\.providerID))
+
+        if providers.contains("apple.com") {
+            let credential = try await requestAppleReauthorization()
+            guard
+                let nonce = currentNonce,
+                let tokenData = credential.identityToken,
+                let idToken = String(data: tokenData, encoding: .utf8),
+                let codeData = credential.authorizationCode,
+                let authCode = String(data: codeData, encoding: .utf8)
+            else {
+                throw AccountDeletionError.appleCredentialUnreadable
+            }
+            let firebaseCredential = OAuthProvider.appleCredential(
+                withIDToken: idToken, rawNonce: nonce, fullName: nil
+            )
+            try await user.reauthenticate(with: firebaseCredential)
+            try await leaveTeamChallenges(teamChallengeIds, uid: user.uid)
+            try await SchoolService.removeFromAccount(uid: user.uid)
+            try await Auth.auth().revokeToken(withAuthorizationCode: authCode)
+            try await user.delete()
+        } else {
+            try await leaveTeamChallenges(teamChallengeIds, uid: user.uid)
+            try await SchoolService.removeFromAccount(uid: user.uid)
+            do {
+                try await user.delete()
+            } catch let error as NSError where error.code == AuthErrorCode.requiresRecentLogin.rawValue
+                        && providers.contains("google.com") {
+                try await reauthenticateWithGoogle(user)
+                try await user.delete()
+            }
+        }
+
+        // Deleting already ends the session; signing out makes sure the app
+        // returns to the login screen right away.
+        try? Auth.auth().signOut()
+        self.user = nil
+        if providers.contains("google.com") {
+            try? await GIDSignIn.sharedInstance.disconnect()
+        }
+        SchoolService.clearLocal()
+    }
+
+    /// Remove this member from every team challenge they joined, so their
+    /// name and count don't stay on friends' leaderboards. Stops the deletion
+    /// if the list can't be read, so nothing is left behind.
+    private func leaveTeamChallenges(_ ids: [String], uid: String) async throws {
+        // The account's list also covers challenges joined on another phone.
+        let onAccount = try await TeamService.accountChallenges(uid: uid).map(\.id)
+        for id in Set(ids + onAccount) {
+            do {
+                try await TeamService.leave(id: id, uid: uid)
+            } catch TeamError.notFound {
+                continue  // Already gone.
+            }
+        }
+    }
+
+    private func reauthenticateWithGoogle(_ user: User) async throws {
+        guard let presenter = Self.topViewController() else {
+            throw AccountDeletionError.cannotPresent
+        }
+        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: presenter)
+        guard let idToken = result.user.idToken?.tokenString else {
+            throw AccountDeletionError.googleCredentialUnreadable
+        }
+        let credential = GoogleAuthProvider.credential(
+            withIDToken: idToken, accessToken: result.user.accessToken.tokenString
+        )
+        try await user.reauthenticate(with: credential)
+    }
+
+    /// Show the Apple sign-in sheet and wait for the new credential.
+    private func requestAppleReauthorization() async throws -> ASAuthorizationAppleIDCredential {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        let nonce = Self.randomNonceString()
+        currentNonce = nonce
+        request.nonce = Self.sha256(nonce)
+
+        return try await withCheckedThrowingContinuation { continuation in
+            appleReauthContinuation = continuation
+            let controller = ASAuthorizationController(authorizationRequests: [request])
+            controller.delegate = self
+            controller.presentationContextProvider = self
+            controller.performRequests()
         }
     }
 
@@ -91,9 +203,10 @@ final class AuthService: NSObject, ObservableObject {
 
     // MARK: - Join with a school code
 
-    /// Validate a school code against Firestore, then sign the student in
-    /// anonymously and tag the account with the school. Lets students without
-    /// an Apple/Google account still use the app.
+    /// Validate a school code against Firestore, then save the school to the
+    /// account. Signed out, this signs the student in anonymously first, so
+    /// students without an Apple/Google account can still use the app.
+    /// Signed in, it links the school to the current account.
     func joinWithSchoolCode(_ code: String) {
         let trimmed = code.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {
@@ -101,6 +214,7 @@ final class AuthService: NSObject, ObservableObject {
             return
         }
         isJoining = true
+        didLinkSchool = false
         errorMessage = nil
         Task { @MainActor in
             defer { isJoining = false }
@@ -109,12 +223,21 @@ final class AuthService: NSObject, ObservableObject {
                     errorMessage = "We couldn't find that school code."
                     return
                 }
+                if let current = Auth.auth().currentUser {
+                    try await SchoolService.saveToAccount(school, uid: current.uid)
+                    didLinkSchool = true
+                    return
+                }
                 let result = try await Auth.auth().signInAnonymously()
                 let change = result.user.createProfileChangeRequest()
                 change.displayName = "Student · \(school.name)"
                 try? await change.commitChanges()
-                UserDefaults.standard.set(school.id, forKey: "schoolId")
-                UserDefaults.standard.set(school.name, forKey: "schoolName")
+                do {
+                    try await SchoolService.saveToAccount(school, uid: result.user.uid)
+                } catch {
+                    // Still signed in; keep the school on this phone at least.
+                    SchoolService.storeLocally(id: school.id, name: school.name)
+                }
             } catch {
                 errorMessage = error.localizedDescription
             }
@@ -205,5 +328,53 @@ final class AuthService: NSObject, ObservableObject {
 
     private static func sha256(_ input: String) -> String {
         SHA256.hash(data: Data(input.utf8)).map { String(format: "%02x", $0) }.joined()
+    }
+}
+
+enum AccountDeletionError: LocalizedError {
+    case appleCredentialUnreadable
+    case googleCredentialUnreadable
+    case cannotPresent
+
+    var errorDescription: String? {
+        switch self {
+        case .appleCredentialUnreadable:  return "Could not read the Apple credential."
+        case .googleCredentialUnreadable: return "Couldn't read the Google account."
+        case .cannotPresent:              return "Couldn't show the sign-in screen."
+        }
+    }
+}
+
+// MARK: - Apple sheet for account deletion
+
+extension AuthService: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    nonisolated func authorizationController(controller: ASAuthorizationController,
+                                             didCompleteWithAuthorization authorization: ASAuthorization) {
+        let credential = authorization.credential as? ASAuthorizationAppleIDCredential
+        Task { @MainActor in
+            if let credential {
+                appleReauthContinuation?.resume(returning: credential)
+            } else {
+                appleReauthContinuation?.resume(throwing: AccountDeletionError.appleCredentialUnreadable)
+            }
+            appleReauthContinuation = nil
+        }
+    }
+
+    nonisolated func authorizationController(controller: ASAuthorizationController,
+                                             didCompleteWithError error: Error) {
+        Task { @MainActor in
+            appleReauthContinuation?.resume(throwing: error)
+            appleReauthContinuation = nil
+        }
+    }
+
+    nonisolated func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        MainActor.assumeIsolated {
+            UIApplication.shared.connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .first { $0.activationState == .foregroundActive }?
+                .keyWindow ?? ASPresentationAnchor()
+        }
     }
 }

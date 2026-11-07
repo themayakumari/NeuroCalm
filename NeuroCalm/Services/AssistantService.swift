@@ -32,6 +32,10 @@ enum AssistantService {
         history: [(role: String, text: String)]
     ) async -> (text: String, source: AssistantSource) {
         let lastUser = history.last(where: { $0.role == "user" })?.text ?? ""
+        // Crisis messages always get the same real-help reply, on every device.
+        if mentionsCrisis(lastUser) {
+            return (crisisReply, .local)
+        }
         // Ground the answer in the traditional yoga practice source material.
         let grounding = KnowledgeBase.shared.grounding(for: lastUser)
 
@@ -41,9 +45,29 @@ enum AssistantService {
         return (reply(to: lastUser).text, .local)
     }
 
+    static let crisisReply = "I'm really glad you told me, and I care about what happens to you. Please reach out to a person right now: call or text 988, or text HOME to 741741. They're free and there any time. If you're in immediate danger, call 911. A parent, teacher, or school counselor can help too. You're not alone."
+
+    /// True when a message talks about suicide or self-harm.
+    static func mentionsCrisis(_ message: String) -> Bool {
+        let msg = message.lowercased().replacingOccurrences(of: "’", with: "'")
+        return matches(msg, any: [
+            "suicid", "kill myself", "killing myself", "end my life", "ending my life",
+            "take my own life", "want to die", "wanna die",
+            "self harm", "self-harm", "selfharm", "hurt myself", "hurting myself",
+            "harm myself", "harming myself", "cut myself", "cutting myself",
+            "no reason to live", "better off dead", "better off without me",
+            "don't want to live", "dont want to live", "don't want to be alive", "dont want to be alive",
+            "don't want to be here anymore", "dont want to be here anymore", "end it all", "overdose"
+        ])
+    }
+
     /// Generate a supportive, conversational reply based on what was said.
     static func reply(to userMessage: String) -> AssistantReply {
         let msg = userMessage.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if mentionsCrisis(msg) {
+            return AssistantReply(text: crisisReply, suggestBreathing: false)
+        }
 
         // ---- Small talk keeps it feeling like a real conversation ----
 

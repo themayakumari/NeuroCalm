@@ -1,0 +1,29 @@
+rules_version = '2';
+
+// NeuroCalm Firebase Storage rules.
+// Paste into Firebase console > Storage > Rules (or deploy with the Firebase CLI).
+//
+// The app only reads: the content file (content/content.json) and audio
+// files (audio/... and neurocalm/audio/...). Anyone can read those, so the app
+// works before sign-in.
+// Nobody can write from the app; upload files in the Firebase console.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /content/{file=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /audio/{file=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /neurocalm/audio/{file=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+    // Everything else is closed.
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}

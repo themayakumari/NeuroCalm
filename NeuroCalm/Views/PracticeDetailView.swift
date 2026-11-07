@@ -11,12 +11,12 @@ import SwiftUI
 struct PracticeDetailView: View {
     let practice: Practice
     @EnvironmentObject private var player: AudioPlayerService
+    @ObservedObject private var library = ContentService.shared
     @Environment(\.modelContext) private var context
 
-    /// Guided-audio tracks linked to this practice (from the Relax library).
+    /// Guided-audio tracks linked to this practice (bundled or from Firebase).
     private var audioTracks: [MeditationTrack] {
-        guard let ids = practice.audioTrackIds else { return [] }
-        return MeditationLibrary.all.filter { ids.contains($0.id) }
+        library.tracks(for: practice)
     }
 
     var body: some View {
@@ -48,14 +48,17 @@ struct PracticeDetailView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
 
-                // Guided audio — playable tracks if linked, else a placeholder.
-                section("Guided audio") {
-                    if audioTracks.isEmpty {
-                        audioPlaceholder
-                    } else {
+                // Guided audio — only shown once a track is linked to this practice.
+                if !audioTracks.isEmpty {
+                    section("Guided audio") {
                         VStack(spacing: 10) {
                             ForEach(audioTracks) { track in
                                 audioTrackRow(track)
+                            }
+                            if let error = player.errorMessage {
+                                Text(error)
+                                    .font(.caption)
+                                    .foregroundStyle(AppTheme.ember)
                             }
                         }
                     }
@@ -73,6 +76,7 @@ struct PracticeDetailView: View {
         .background(AppTheme.background.ignoresSafeArea())
         .navigationTitle(practice.name)
         .navigationBarTitleDisplayMode(.inline)
+        .task { await library.refresh() }
     }
 
     /// A playable track row (reuses the app-wide audio player, like Relax).
@@ -90,8 +94,12 @@ struct PracticeDetailView: View {
                     Circle()
                         .fill(isCurrent ? AppTheme.sage : AppTheme.sage.opacity(0.15))
                         .frame(width: 44, height: 44)
-                    Image(systemName: isCurrent && player.isPlaying ? "pause.fill" : "play.fill")
-                        .foregroundStyle(isCurrent ? AppTheme.ink : AppTheme.sage)
+                    if player.downloadingTrackId == track.id {
+                        ProgressView().tint(AppTheme.sage)
+                    } else {
+                        Image(systemName: isCurrent && player.isPlaying ? "pause.fill" : "play.fill")
+                            .foregroundStyle(isCurrent ? AppTheme.ink : AppTheme.sage)
+                    }
                 }
                 VStack(alignment: .leading, spacing: 3) {
                     Text(track.title)
@@ -115,32 +123,6 @@ struct PracticeDetailView: View {
             )
         }
         .buttonStyle(.plain)
-    }
-
-    /// Placeholder for practices with no linked audio yet.
-    private var audioPlaceholder: some View {
-        HStack(spacing: 14) {
-            Image(systemName: "headphones")
-                .font(.title3)
-                .foregroundStyle(AppTheme.mist)
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Guided audio coming soon")
-                    .font(.subheadline)
-                    .foregroundStyle(AppTheme.textPrimary)
-                Text("A spoken walkthrough of this practice")
-                    .font(.caption)
-                    .foregroundStyle(AppTheme.mist)
-            }
-            Spacer()
-            Image(systemName: "play.circle.fill")
-                .font(.largeTitle)
-                .foregroundStyle(AppTheme.mist.opacity(0.35))
-        }
-        .padding(16)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(AppTheme.twilight2)
-        .cornerRadius(AppTheme.cardRadius)
-        .opacity(0.85)
     }
 
     @ViewBuilder

@@ -1,0 +1,118 @@
+rules_version = '2';
+
+// NeuroCalm Firestore security rules.
+// Deploy with:  firebase deploy --only firestore:rules
+//
+// Only these collections are used by the app. Everything else is denied.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // A member entry is just a short display name and a progress count.
+    function validMember(m) {
+      return m.keys().hasOnly(['name', 'current'])
+        && m.name is string && m.name.size() > 0 && m.name.size() <= 60
+        && m.current is int && m.current >= 0 && m.current <= 1000;
+    }
+
+    // Team challenges ("with friends"). The document id is the join code, so
+    // knowing the code is the only way in. Nobody can search or list them.
+    match /teamChallenges/{challengeId} {
+      // Only members can read the leaderboard.
+      allow get: if signedIn() && request.auth.uid in resource.data.members;
+      allow list: if false;
+
+      // Create: you must be the creator and the only member, starting at 0.
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(
+             ['code', 'templateId', 'title', 'startDate', 'createdBy', 'members'])
+        && request.resource.data.code is string
+        && request.resource.data.code.size() == 6
+        && request.resource.data.code == challengeId
+        && request.resource.data.templateId is string
+        && request.resource.data.title is string
+        && request.resource.data.title.size() <= 80
+        && request.resource.data.startDate is timestamp
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.members.keys().hasOnly([request.auth.uid])
+        && validMember(request.resource.data.members[request.auth.uid])
+        && request.resource.data.members[request.auth.uid].current == 0;
+
+      // Update: only your own entry in the members map. That covers joining
+      // with the code, updating your count, and leaving. The creator may also
+      // clear their own id when they leave.
+      allow update: if signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members', 'createdBy'])
+        && (request.resource.data.createdBy == resource.data.createdBy
+            || (resource.data.createdBy == request.auth.uid
+                && request.resource.data.createdBy == ''))
+        && request.resource.data.members.diff(resource.data.members)
+             .affectedKeys().hasOnly([request.auth.uid])
+        && (!(request.auth.uid in request.resource.data.members)
+            || validMember(request.resource.data.members[request.auth.uid]));
+
+      // The creator can delete a challenge, and so can its last member.
+      allow delete: if signedIn()
+        && (resource.data.createdBy == request.auth.uid
+            || resource.data.members.keys().hasOnly([request.auth.uid]));
+    }
+
+    // Schools, for "Join with a school code". The document id is the code, so
+    // a school can only be opened by someone who knows it. Schools are added
+    // from the Firebase console.
+    match /schools/{schoolId} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if false;
+    }
+
+    // The challenges a student is in, kept on their account so they come back
+    // on a new phone and are all cleaned up when the account is deleted.
+    match /users/{uid}/teamChallenges/{challengeId} {
+      allow read, delete: if signedIn() && request.auth.uid == uid;
+      allow create, update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['title'])
+        && request.resource.data.title is string
+        && request.resource.data.title.size() <= 80;
+    }
+
+    // Each student's account record: just the school they joined. Only the
+    // student can read or change their own, and only with a real school.
+    match /users/{uid} {
+      allow get, delete: if signedIn() && request.auth.uid == uid;
+      allow create, update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['schoolId', 'schoolName'])
+        && request.resource.data.schoolId is string
+        && request.resource.data.schoolId.size() > 0
+        && request.resource.data.schoolId.size() <= 128
+        && request.resource.data.schoolName is string
+        && request.resource.data.schoolName.size() <= 120
+        && exists(/databases/$(database)/documents/schools/$(request.resource.data.schoolId));
+    }
+
+    // Reports of leaderboard names. Students can only send one, as themselves;
+    // nobody can read or change them from the app (use the Firebase console).
+    match /reports/{reportId} {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(
+             ['challengeId', 'reportedUid', 'reportedName', 'reporterUid', 'createdAt'])
+        && request.resource.data.challengeId is string
+        && request.resource.data.challengeId.size() <= 128
+        && request.resource.data.reportedUid is string
+        && request.resource.data.reportedUid.size() <= 128
+        && request.resource.data.reportedName is string
+        && request.resource.data.reportedName.size() <= 60
+        && request.resource.data.reporterUid == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+      allow read, update, delete: if false;
+    }
+
+    // Deny everything else.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

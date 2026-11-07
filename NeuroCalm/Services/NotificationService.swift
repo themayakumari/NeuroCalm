@@ -74,6 +74,16 @@ final class NotificationService {
         "routine-\(task.persistentModelID.hashValue)"
     }
 
+    /// Remove every deadline and routine reminder (used by "Reset all data").
+    func cancelAllItemReminders() {
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests { requests in
+            let ids = requests.map(\.identifier)
+                .filter { $0.hasPrefix("deadline-") || $0.hasPrefix("routine-") }
+            center.removePendingNotificationRequests(withIdentifiers: ids)
+        }
+    }
+
     /// Cancel the recurring daily check-in reminder.
     func cancelDailyCheckIn() {
         UNUserNotificationCenter.current()

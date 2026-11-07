@@ -2,8 +2,9 @@
 //  LoginView.swift
 //  NeuroCalm
 //
-//  The first screen for signed-out users. Sign in with Apple is live;
-//  Google and school-code sign-in are placeholders for the next steps.
+//  The first screen for signed-out users: sign in with Apple, Google or a
+//  school code. The account links a student to their school and to team
+//  challenges; personal data still stays on the device.
 //
 
 import SwiftUI
@@ -39,7 +40,7 @@ struct LoginView: View {
                     Text("NeuroCalm")
                         .font(AppTheme.display(40))
                         .foregroundStyle(AppTheme.cream)
-                    Text("Sign in to save your progress and\nsync across your devices.")
+                    Text("Your account connects you to your school\nand to challenges with friends. Your moods,\nnotes and chats stay on this phone.")
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(AppTheme.mist)
@@ -89,8 +90,7 @@ struct LoginView: View {
         .sheet(isPresented: $showSchoolSheet) {
             SchoolCodeSheet()
                 .presentationDetents([.medium])
-        }
-    }
+        }    }
 
     private func authButton(icon: String, text: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
@@ -108,7 +108,8 @@ struct LoginView: View {
     }
 }
 
-/// Sheet to enter a school code and join anonymously.
+/// Sheet to enter a school code. Signed out, it joins anonymously; signed in
+/// (from Settings), it links the school to the current account.
 struct SchoolCodeSheet: View {
     @EnvironmentObject private var auth: AuthService
     @Environment(\.dismiss) private var dismiss
@@ -172,6 +173,10 @@ struct SchoolCodeSheet: View {
             .onChange(of: auth.isSignedIn) { _, signedIn in
                 if signedIn { dismiss() }
             }
+            .onChange(of: auth.didLinkSchool) { _, linked in
+                if linked { dismiss() }
+            }
+            .onAppear { auth.errorMessage = nil }
         }
     }
 }

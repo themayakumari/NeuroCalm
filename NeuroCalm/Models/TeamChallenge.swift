@@ -32,6 +32,27 @@ struct TeamChallenge: Identifiable {
     var template: ChallengeTemplate? { ChallengeCatalog.template(id: templateId) }
 }
 
+/// People this student blocked on team leaderboards. Kept on this phone only,
+/// so the blocked person never finds out.
+enum BlockedMembers {
+    static let key = "blockedTeamMembers"
+
+    /// The saved list is uids joined by commas (uids never contain one).
+    static func ids(from raw: String) -> Set<String> {
+        Set(raw.split(separator: ",").map(String.init))
+    }
+
+    static func raw(from ids: Set<String>) -> String {
+        ids.sorted().joined(separator: ",")
+    }
+
+    /// The leaderboard without anyone this student blocked.
+    static func visible(_ members: [MemberProgress], raw: String) -> [MemberProgress] {
+        let blocked = ids(from: raw)
+        return members.filter { !blocked.contains($0.id) }
+    }
+}
+
 /// Local record of a team challenge this device has joined (so we know which to show).
 @Model
 final class TeamMembership {

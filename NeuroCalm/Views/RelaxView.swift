@@ -2,9 +2,9 @@
 //  RelaxView.swift
 //  NeuroCalm
 //
-//  A library of guided relaxation audio (Shavasana, Yoga Nap). Tapping a
-//  track plays it; a now-playing bar at the bottom controls playback and
-//  persists as the user moves around the app.
+//  A library of guided relaxation audio (Shavasana, Yoga Nap, plus any
+//  tracks added in Firebase — see ContentService). Tapping a track plays it; the app-wide NowPlayingBar controls
+//  playback as the user moves around the app.
 //
 
 import SwiftUI
@@ -12,13 +12,14 @@ import SwiftData
 
 struct RelaxView: View {
     @EnvironmentObject private var player: AudioPlayerService
+    @ObservedObject private var library = ContentService.shared
     @Environment(\.modelContext) private var context
     @Query private var bookmarks: [Bookmark]
 
     /// Tracks the user has starred, in the library's order.
     private var savedTracks: [MeditationTrack] {
         let savedIds = Set(bookmarks.filter { $0.kind == Bookmark.meditationKind }.map(\.referenceId))
-        return MeditationLibrary.all.filter { savedIds.contains($0.id) }
+        return library.tracks.filter { savedIds.contains($0.id) }
     }
 
     var body: some View {
@@ -27,21 +28,28 @@ struct RelaxView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     header
 
+                    if let error = player.errorMessage {
+                        Text(error)
+                            .font(.caption)
+                            .foregroundStyle(AppTheme.ember)
+                    }
+
                     if !savedTracks.isEmpty {
                         section(title: "Saved", tracks: savedTracks)
                     }
-                    section(title: savedTracks.isEmpty ? nil : "All practices", tracks: MeditationLibrary.all)
+                    section(title: savedTracks.isEmpty && library.breathingTracks.isEmpty ? nil : "All practices",
+                            tracks: library.relaxationTracks)
+                    if !library.breathingTracks.isEmpty {
+                        section(title: "Guided breathing", tracks: library.breathingTracks)
+                    }
                 }
                 .padding()
                 .adaptiveContentWidth()
             }
             .background(AppTheme.background.ignoresSafeArea())
             .navigationTitle("Relax")
-            .safeAreaInset(edge: .bottom) {
-                if player.currentTrack != nil {
-                    nowPlayingBar
-                }
-            }
+            .refreshable { await library.refresh() }
+            .task { await library.refresh() }
         }
     }
 
@@ -81,10 +89,15 @@ struct RelaxView: View {
                     Circle()
                         .fill(isCurrent ? AppTheme.sage : AppTheme.sage.opacity(0.15))
                         .frame(width: 46, height: 46)
-                    Image(systemName: isCurrent && player.isPlaying ? "pause.fill" : "play.fill")
-                        .foregroundStyle(isCurrent ? AppTheme.ink : AppTheme.sage)
+                    if player.downloadingTrackId == track.id {
+                        ProgressView().tint(AppTheme.sage)
+                    } else {
+                        Image(systemName: isCurrent && player.isPlaying ? "pause.fill" : "play.fill")
+                            .foregroundStyle(isCurrent ? AppTheme.ink : AppTheme.sage)
+                    }
                 }
             }
+            .accessibilityLabel(player.downloadingTrackId == track.id ? "Downloading" : "Play \(track.title)")
 
             Button { playTrack(track) } label: {
                 VStack(alignment: .leading, spacing: 3) {
@@ -143,40 +156,6 @@ struct RelaxView: View {
             ))
         }
         try? context.save()
-    }
-
-    private var nowPlayingBar: some View {
-        VStack(spacing: 8) {
-            HStack(spacing: 14) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(player.currentTrack?.title ?? "")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                        .foregroundStyle(AppTheme.cream)
-                        .lineLimit(1)
-                    Text("\(player.formatted(player.elapsed)) / \(player.formatted(player.duration))")
-                        .font(AppTheme.mono(10))
-                        .foregroundStyle(AppTheme.mist)
-                }
-                Spacer()
-                Button { player.togglePlayPause() } label: {
-                    Image(systemName: player.isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                        .font(.system(size: 40))
-                        .foregroundStyle(AppTheme.sage)
-                }
-                Button { player.stop() } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(AppTheme.mist)
-                }
-            }
-
-            ProgressView(value: player.progress)
-                .tint(AppTheme.sage)
-        }
-        .padding(14)
-        .background(.ultraThinMaterial)
-        .adaptiveContentWidth()
     }
 }
 

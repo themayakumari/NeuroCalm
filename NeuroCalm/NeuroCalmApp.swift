@@ -88,6 +88,8 @@ struct NeuroCalmApp: App {
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
+                // Fetch the latest practices + audio list from Firebase.
+                .task { await ContentService.shared.refresh() }
                 // The Exhale palette is a fixed dark design, not adaptive,
                 // so we lock system chrome (forms, alerts, keyboard) to dark too.
                 .preferredColorScheme(.dark)

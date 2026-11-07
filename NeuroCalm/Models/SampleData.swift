@@ -40,6 +40,11 @@ enum SampleData {
             lastCheckInDate: isUITesting ? Date() : nil
         )
         context.insert(profile)
+        defer { try? context.save() }
+
+        // Real students start with an empty Planner. Example tasks are only for
+        // UI tests and App Store screenshots.
+        guard isUITesting else { return }
 
         // 2) A few example deadlines for the planner screen
         let calendar = Calendar.current
@@ -69,7 +74,5 @@ enum SampleData {
         context.insert(taskAt(18, 0,  title: "Dinner",              category: "other"))
         context.insert(taskAt(20, 30, title: "Light review",        category: "study"))
         context.insert(taskAt(21, 30, title: "Wind down for sleep", category: "sleep"))
-
-        try? context.save()
     }
 }

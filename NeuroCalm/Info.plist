@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram-stories</string>
@@ -44,7 +44,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>NeuroCalm shows your upcoming calendar events in the Planner so your schoolwork and events are in one place.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>NeuroCalm reads your mindfulness data so it can show how often you've been calming your mind.</string>
+	<string>NeuroCalm only saves your breathing sessions to the Health app as Mindful Minutes. It does not read your Health data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>NeuroCalm saves your breathing sessions to the Health app as Mindful Minutes.</string>
 	<key>UIBackgroundModes</key>

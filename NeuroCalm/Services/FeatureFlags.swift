@@ -9,9 +9,8 @@
 
 enum FeatureFlags {
 
-    /// Team / multiplayer challenges write to Firestore and need the backend
-    /// configured with security rules (and friends who also use the app). Off
-    /// for the MVP. Flip to `true` once the Firebase/Firestore backend is live
-    /// to bring back the "With friends" section on the Challenges screen.
-    static let teamChallengesEnabled = false
+    /// Team / multiplayer challenges write to Firestore and need the rules in
+    /// `firestore.rules` deployed. Off for the 1.0 MVP, on from 1.1. Shows the
+    /// "With friends" section on the Challenges screen.
+    static let teamChallengesEnabled = true
 }

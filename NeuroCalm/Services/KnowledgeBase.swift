@@ -7,9 +7,10 @@
 //  the most relevant practices and hands their text to the assistant as source
 //  material, so replies stay faithful to the practices.
 //
-//  The content lives in Resources/Knowledge/practices.json — edit that file to
-//  refine the practice descriptions and add more practices. No code changes
-//  needed to grow it.
+//  The practices come from the content file in Firebase Storage (see
+//  ContentService), saved on the phone at the last launch. Edit that file to
+//  change or add practices, no app update needed. Resources/Knowledge/
+//  practices.json is the bundled backup used until a download succeeds.
 //
 
 import Foundation
@@ -41,6 +42,10 @@ final class KnowledgeBase {
     let practices: [Practice]
 
     private init() {
+        if let saved = ContentService.savedContent()?.practices, !saved.isEmpty {
+            practices = saved
+            return
+        }
         let url = Bundle.main.url(forResource: "practices", withExtension: "json", subdirectory: "Knowledge")
             ?? Bundle.main.url(forResource: "practices", withExtension: "json")
         if let url, let data = try? Data(contentsOf: url),

@@ -81,6 +81,9 @@ struct MainSplitView: View {
             .background(AppTheme.background)
         } detail: {
             (selection ?? .home).destination
+                .safeAreaInset(edge: .bottom) {
+                    NowPlayingBar { selection = .relax }
+                }
         }
         .tint(AppTheme.primaryBlue)
     }

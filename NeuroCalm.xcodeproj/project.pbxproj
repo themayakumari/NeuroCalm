@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0230EAED07E1E6D62CA19501 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877A02A725FF21B35BDA3ED /* AppTheme.swift */; };
+		04579E1B9076E1A1B90B4332 /* NowPlayingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA49A7AEC4120D87AD38C78 /* NowPlayingBar.swift */; };
 		06D5C0F963A95437D3B5754C /* BadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC230A35EE4CCCD07B202C /* BadgesView.swift */; };
 		0F8E0FCFB4B9E3B71D0854EF /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5E4F4E94DCDA974A7D344 /* FeatureFlags.swift */; };
 		1267FF8FD4A96B89CA65879C /* WellnessScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C55B60B057B5BF7A3F4CAA /* WellnessScore.swift */; };
@@ -23,10 +24,12 @@
 		3F31C322A690C00D7B012FD7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF88371D9F882ADA78F4C9 /* AuthService.swift */; };
 		44C5C157058CCE8E29DA4939 /* CoreLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F999813D9D25CA3DC9EE017 /* CoreLogicTests.swift */; };
 		4770FC5E65DD7CF9FAD4D2D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BC678FA2E0DA2F01B2525B /* GoogleService-Info.plist */; };
+		47983D9745AEDAAEA418CADE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = ED7A5424B12107A3FC592686 /* PrivacyInfo.xcprivacy */; };
 		485A258BD9F400972687EF41 /* AssistantConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47633B75C631EBFEF9D7B0 /* AssistantConversation.swift */; };
 		48EC132A312126E6A1DD66F5 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2690EAABE71F353312108 /* TeamService.swift */; };
 		4C67B2E0894410179E1008C8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 348A633472C692F78A4D3D89 /* FirebaseAuth */; };
 		4EAC2C6A079AF0A74289891D /* shavasana-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D16B4CDFAF44B6D11AFD4 /* shavasana-3.mp3 */; };
+		4F1AC360016C6033795E66DA /* ContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CFF8A5B9AEAE861E37C4D /* ContentService.swift */; };
 		4F5AF233B363E634FA30E030 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ED25597830C1E912E0542 /* StatsView.swift */; };
 		5B1D593B5BFCF621D7E360D6 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB002AC86A99C9E8BE95B9 /* School.swift */; };
 		5C4EF91D9F28393D07AF6041 /* NeuroCalmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE059CFF28AF7292821164 /* NeuroCalmApp.swift */; };
@@ -59,8 +62,7 @@
 		B7E832598DE53BA5C607071C /* RelaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D89A4AB6DB09C3A47D04F5 /* RelaxView.swift */; };
 		B9CD19EC27621514E475FD4C /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18ACD078D4D7817EE2DCDE1 /* Challenge.swift */; };
 		BE82E3BF35E3DD5017280564 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609422EBEAE0E4A3B18F521E /* HomeView.swift */; };
-		BFAC4D935564CDE34A6D6182 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 0686D161C9D635ED688EFBD6 /* GoogleSignIn */; };
-		C0AEDBEA4AFBFD00A7704505 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 774539E188F7E3BD9B3D69B9 /* FirebaseFunctions */; };
+		C0AEDBEA4AFBFD00A7704505 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 0686D161C9D635ED688EFBD6 /* GoogleSignIn */; };
 		C1FF07D181DEEBD47DE7C3BE /* Deadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3B72A088510F29DD212D9 /* Deadline.swift */; };
 		C7FC79EF471CC623C377486C /* CalmRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36608DE73D0DB594775307D /* CalmRingView.swift */; };
 		CFF2B107A661FD1CA5A55732 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6915B7C95058680933860C3 /* WelcomeView.swift */; };
@@ -115,6 +117,8 @@
 		41B3B72A088510F29DD212D9 /* Deadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deadline.swift; sourceTree = "<group>"; };
 		46147175360926E52C59C971 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		497CC56740CB223552F29C52 /* MoodCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCheckIn.swift; sourceTree = "<group>"; };
+		4AA49A7AEC4120D87AD38C78 /* NowPlayingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingBar.swift; sourceTree = "<group>"; };
+		4C2CFF8A5B9AEAE861E37C4D /* ContentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentService.swift; sourceTree = "<group>"; };
 		57AC230A35EE4CCCD07B202C /* BadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesView.swift; sourceTree = "<group>"; };
 		5A1FC966DE2918ADB088A20A /* TeamChallengeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallengeViews.swift; sourceTree = "<group>"; };
 		5A8D16B4CDFAF44B6D11AFD4 /* shavasana-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "shavasana-3.mp3"; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		E7452B926EBC9747E95B91CA /* EncouragementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncouragementService.swift; sourceTree = "<group>"; };
 		E8BC678FA2E0DA2F01B2525B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBD5BDEBD28DDE4D5C08B2EE /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		ED7A5424B12107A3FC592686 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F084B69C63CD212C3D350BA1 /* RoutineTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTask.swift; sourceTree = "<group>"; };
 		F1DFE9569607D236471D42E9 /* TeamChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallenge.swift; sourceTree = "<group>"; };
 		F69AE5241BDA91C558606E15 /* KnowledgeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeBase.swift; sourceTree = "<group>"; };
@@ -175,8 +180,7 @@
 			files = (
 				4C67B2E0894410179E1008C8 /* FirebaseAuth in Frameworks */,
 				8AC44642D39FED8CCB3A3E74 /* FirebaseFirestore in Frameworks */,
-				C0AEDBEA4AFBFD00A7704505 /* FirebaseFunctions in Frameworks */,
-				BFAC4D935564CDE34A6D6182 /* GoogleSignIn in Frameworks */,
+				C0AEDBEA4AFBFD00A7704505 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +239,7 @@
 				A6DF88371D9F882ADA78F4C9 /* AuthService.swift */,
 				61D70D291886C262EA2EE4B1 /* BreathingVoiceService.swift */,
 				B6D337E0BD88B80D85E24206 /* CalendarService.swift */,
+				4C2CFF8A5B9AEAE861E37C4D /* ContentService.swift */,
 				E7452B926EBC9747E95B91CA /* EncouragementService.swift */,
 				BBC5E4F4E94DCDA974A7D344 /* FeatureFlags.swift */,
 				8A8C117F7E76AAF28F9AAA0A /* HealthKitService.swift */,
@@ -294,6 +299,7 @@
 				218DAF8903F4961B7DFD92F9 /* LoginView.swift */,
 				0585928007EDFBF8903D8F10 /* MainSplitView.swift */,
 				3075442DFD8DC8ED8A83E403 /* MainTabView.swift */,
+				4AA49A7AEC4120D87AD38C78 /* NowPlayingBar.swift */,
 				BDCAD77EDF4306C8294DDD5C /* OnboardingView.swift */,
 				A3656C41998B036D47319697 /* PlannerView.swift */,
 				82973FF641CA8656D31BDB73 /* PracticeAnimationView.swift */,
@@ -319,6 +325,7 @@
 				12C7C206797E35EDA0A9680F /* Info.plist */,
 				00E3483030056DF42DF57BA9 /* NeuroCalm.entitlements */,
 				8BDE059CFF28AF7292821164 /* NeuroCalmApp.swift */,
+				ED7A5424B12107A3FC592686 /* PrivacyInfo.xcprivacy */,
 				EBD5BDEBD28DDE4D5C08B2EE /* RootView.swift */,
 				A8424AE5197E9559482874DB /* Models */,
 				5B9F75F288F937B0734664A3 /* Resources */,
@@ -384,7 +391,6 @@
 			packageProductDependencies = (
 				348A633472C692F78A4D3D89 /* FirebaseAuth */,
 				529C66AA24A5D2B9D5553D4B /* FirebaseFirestore */,
-				774539E188F7E3BD9B3D69B9 /* FirebaseFunctions */,
 				0686D161C9D635ED688EFBD6 /* GoogleSignIn */,
 			);
 			productName = NeuroCalm;
@@ -463,6 +469,7 @@
 			files = (
 				39DA4A847ECA6A04A4F09330 /* Assets.xcassets in Resources */,
 				4770FC5E65DD7CF9FAD4D2D9 /* GoogleService-Info.plist in Resources */,
+				47983D9745AEDAAEA418CADE /* PrivacyInfo.xcprivacy in Resources */,
 				923490E125E3D5F89764C486 /* practices.json in Resources */,
 				8E845D2A796ECF7491A1E86F /* shavasana-1.mp3 in Resources */,
 				D2139F24290A84D5EAE817E6 /* shavasana-2.mp3 in Resources */,
@@ -498,6 +505,7 @@
 				C7FC79EF471CC623C377486C /* CalmRingView.swift in Sources */,
 				B9CD19EC27621514E475FD4C /* Challenge.swift in Sources */,
 				6243C2D7E13B20D0830829EC /* ChallengesView.swift in Sources */,
+				4F1AC360016C6033795E66DA /* ContentService.swift in Sources */,
 				C1FF07D181DEEBD47DE7C3BE /* Deadline.swift in Sources */,
 				21B2105AD1677851EBB58DCA /* EncouragementService.swift in Sources */,
 				0F8E0FCFB4B9E3B71D0854EF /* FeatureFlags.swift in Sources */,
@@ -511,6 +519,7 @@
 				29ECB0963F215C35D838F372 /* MoodCheckIn.swift in Sources */,
 				5C4EF91D9F28393D07AF6041 /* NeuroCalmApp.swift in Sources */,
 				EF460BE5E8FBAA5B176913BE /* NotificationService.swift in Sources */,
+				04579E1B9076E1A1B90B4332 /* NowPlayingBar.swift in Sources */,
 				A20A42C0C767E384ADAB3A18 /* OnboardingView.swift in Sources */,
 				6D5273A63759827BD7513172 /* PlannerView.swift in Sources */,
 				E6E32AA442F19DC5CCA4C6F7 /* PracticeAnimationView.swift in Sources */,
@@ -597,7 +606,7 @@
 				CODE_SIGN_ENTITLEMENTS = NeuroCalm/NeuroCalm.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 88944EY694;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NeuroCalm/Info.plist;
@@ -606,7 +615,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalm;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -682,7 +691,7 @@
 				CODE_SIGN_ENTITLEMENTS = NeuroCalm/NeuroCalm.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 88944EY694;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NeuroCalm/Info.plist;
@@ -691,7 +700,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alokic.app.ios.NeuroCalm;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -893,11 +902,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 540EF03C5A3A12CDFAB7ABF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		774539E188F7E3BD9B3D69B9 /* FirebaseFunctions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 540EF03C5A3A12CDFAB7ABF4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFunctions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
